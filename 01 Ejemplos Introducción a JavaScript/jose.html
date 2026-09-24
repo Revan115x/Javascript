@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        function sumar(n1,n2) {
+            var rest = Number (n1)+Number (n2);
+            document.getElementById("resultado").innerHTML = rest;
+        }
+
+        function Limpiar() {
+            document.getElementById("resultado").innerHTML="";
+        }
+
+    </script>
+
+    <input type="text" id="n1">
+
+    <input type="text" id="n2">
+
+    <input type="button" value="+" onclick="sumar(n1.value ,n2.value)">
+
+     <input type="button" value="Limpiar Caja" onclick="Limpiar()">
+
+    <div id="resultado">
+    </div>
+    
+</body>
+</html>

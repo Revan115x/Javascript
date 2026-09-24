@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style type='text/css'>
+        body {
+            font-family: 'Kite One', sans-serif;
+        }
+
+        div {
+            border-style: solid;
+            border-width: 2px;
+            width: 500px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .uno {
+            line-height: 30px;
+        }
+    </style>
+    <script>
+        function ejercicio1() {
+            alert("hola bb")
+        }
+        function ejercicio2(num) {
+            if(Number.isInteger(Number(num)))
+                alert("bien hecho mi loco")
+            else
+                alert("Bro te dije q solo enteros ._.")
+        }       
+        
+        function ejercicio3(num1,num2,operacion) {
+            num1=Number(num1)
+            num2=Number(num2)
+            let resultado;
+
+            switch (operacion) {
+                case "+":
+                    resultado=num1+num2
+                    break;
+                case "-":
+                    resultado=num1-num2
+                    break;
+                case "*":
+                    resultado=num1*num2
+                    break;
+                default:
+                    resultado="A MI LOCO"
+                    break;
+            }
+
+            document.getElementById("res").value=resultado;
+        }
+    </script>
+
+</head>
+
+<body>
+    <form>
+        <input type="reset" value="BORRAR">
+        <div>
+            <br>
+            <input type="button" class="uno" value="Ejercicio 1" onclick="ejercicio1()">
+            <br> <br>
+        </div>
+        <div>
+            <br> Introduce un N&uacute;mero entero <input type="text" id="n1" size="10"></p>
+            <input type="button" class="uno" value="Ejercicio 2" onclick="ejercicio2(n1.value)">
+            <br> <br>
+        </div>
+        <div>
+            Introduce dos n&uacute;meros
+            <br>
+            <p>N&uacute;mero 1 <input type="text" id="n2" size="8"></p>
+            <p>N&uacute;mero 2 <input type="text" id="n3" size="8"></p>
+            Introduce la operaci&oacute;n a ejecutar
+            <input type="text" id="oper" size="3"></p>
+            <p>Resultado <input type="text" id="res" size="8" readonly="readonly"></p>
+            <input type="button" class="uno" value="Ejercicio 3" onclick="ejercicio3(n2.value,n3.value,oper.value)">
+
+        </div>
+
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>
+Bienvenidos a DAW2
+</title>
+<script>
+let cuantos=0;
+function contar(){
+	cuantos++;
+	console.log(cuantos);
+}
+function duplicar(){
+	cuantos=cuantos*2;
+	console.log(cuantos);
+}
+</script>
+ <body>
+Estoy contando tus clicks en el botón ... Pulsa F12 para ver cuantos llevas 
+<br><br>
+<input type="button" 
+   onclick="contar();" value="Click y sumo">
+<input type="button" 
+   onclick="duplicar();" value="Click y duplico">
+</body>
+
+</html>

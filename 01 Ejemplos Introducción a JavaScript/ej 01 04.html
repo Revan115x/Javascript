@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+
+</head>
+
+<body>
+   PROBANDO JAVASCRIPT
+   <br>
+   <input type="text" value="Escribe en la caja" id="texto" onblur="rellenar()" onclick="limpiar()">
+   <div id="demo">
+   </div>
+</body>
+<script type="text/javascript">
+   let saludo = prompt("Buenas, dime algo");
+   document.getElementById("demo").innerHTML = saludo;
+   function rellenar() {
+      document.getElementById("demo").innerHTML = "Has escrito " + document.getElementById("texto").value;
+   }
+   function limpiar() {
+      document.getElementById("texto").value = "";
+   }
+
+</script>
+
+</html>

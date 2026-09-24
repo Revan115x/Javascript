@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> PROBANDO JAVASCRIPT </title>
+<script type="text/JavaScript">
+function saludar(){
+alert ("bienvenido");
+}
+function despedir(){
+ document.getElementById("mensaje").innerHTML="Adios majete";
+}
+function dudoso(){
+document.write ("Pues la has liado...");
+let texto = "<p> Ya no vas a poder hacer nada </p>" 
+document.write (texto);
+document.close();
+}
+</script>
+<body>
+PROBANDO JAVASCRIPT
+<div>
+<script>
+document.write ("<p>Selecciona... </p>");
+</script>
+<input type="button" value="LLego" onclick="saludar()">
+<input type="button" value="Me voy" onclick="despedir()">
+<input type="button" value="No se que hacer" onclick="dudoso()">
+<script>
+document.write ("<p>Fin... </p>");
+</script>
+</div>
+<div id="mensaje">
+</div>
+</body>
+</html>
