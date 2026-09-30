@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJERCICIO2</title>
+</head>
+<body>
+    <!--Hacer un archivo html que contenga un botón con el texto “ME ABURRO” y otro con el
+    texto “STOP”. Al pulsar el primer botón se abrirá una ventana con el texto “Yo sí que
+    me aburro” y una imagen. La ventana aparece en la esquina superior izquierda de la
+    pantalla y se irá moviendo cada segundo a razón de 20 pixeles hacia abajo y a la
+    derecha. Al pulsar el botón de STOP la ventana deja de moverse.-->
+
+    <script>
+        let web;
+
+        function abrir(){
+            web=window.open('','tuya','width=100,height=100');
+            web.document.write("<p>Yo sí que me aburro</p>");
+            web.document.write("<img src='img/F1.JPG'>");
+        }
+
+    </script>
+
+    <input type="button" value="ME ABURRO" onclick="abrir()">
+
+    <input type="button" value="STOP">
+</body>
+</html>

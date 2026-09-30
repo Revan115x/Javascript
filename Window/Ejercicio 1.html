@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJERCICIO1</title>
+  </head>
+
+  <body>
+    <!-- Mostrar en una página la siguiente cuenta atrás 10, 9, 8... 0 segundo a segundo y al
+    finalizar mostrar una imagen. -->
+
+    <script>
+      function CuentaAtras() {
+        let num = 10;
+
+        function contar() {
+          document.getElementById("num").innerHTML = num;
+          num--;
+
+          if (num >= 0) {
+            setTimeout(contar, 1000);
+          } else {
+            document.getElementById("foto").hidden=false;
+          }
+        }
+
+        contar();
+      }
+    </script>
+
+    <input type="button" value="cuenta atras" onclick="CuentaAtras()" />
+    <div id="num"></div>
+    <img id="foto" src="img/F1.JPG" hidden>
+  </body>
+</html>

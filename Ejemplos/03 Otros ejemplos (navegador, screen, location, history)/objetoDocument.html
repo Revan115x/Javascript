@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Propiedades del Objeto document</title>
+<script type="text/javascript">
+function mostrar(){
+codigo="<p>Propiedades de document</p>";
+codigo+="Anclajes: "+document.anchors.length;
+for (i=0;i<document.anchors.length;i++) 
+   {
+   codigo+="<br>Name : " + document.anchors[i].name + "<br>";
+   } 
+codigo+='<br>bgcolor: '+document.bgColor ;
+codigo+='<br>formularios: '+document.forms.length ;
+for (i=0;i<document.forms.length;i++)
+   {
+   codigo+="<br>Nombre : " + document.forms[i].name + "<br>";
+   }
+codigo+='<br>fgcolor: '+document.fgColor;
+codigo+='<br>imagenes: '+document.images.length;
+for (i=0;i<document.images.length;i++)
+   {
+   codigo+="<br>Archivo : " + document.images[i].src + "<br>";
+   }
+codigo+='<br>Ultima modificación del documento: '+document.lastModified ;
+codigo+='<br>Color Enlaces: '+document.linkColor+' '+
+                                          document.vlinkColor+' '+
+										  document.alinkColor ;
+codigo+='<br>links: '+document.links.length ;
+for (i=0;i<document.links.length;i++)
+   {
+   codigo+="<br>Links : " + document.links[i] + "<br>" ;
+   }
+codigo+='<br>Título: '+document.title ;
+codigo+='<br>URL: '+document.URL ;
+codigo+='<br>fin   ';
+document.getElementById("id1").innerHTML=codigo;
+
+}
+</script>
+</head>
+<body bgcolor="#cccccc" text="olive" link="red" vlink="purple" alink="olive">
+<a href="#abajo"> abajo </a>
+<form name="formulario 1">
+<input type="button" value="Mostrar propiedades" 
+					 onclick="mostrar()">
+<br><br>
+<input type="button" value="Cambiar color fondo" 
+					 onclick="document.bgColor='#00ccff'">
+<input type="button" value="Cambiar color texto" 
+					 onclick="document.fgColor='#996699'">
+</form>
+<br><br>
+<img src="garfield.jpg" width="300" height="300">
+<br>
+<a href="http://www.google.com"> Ir a Google </a>
+<br><br><br><br>
+ABAJO
+<a name="abajo">
+<div id="id1">
+</div>
+</body>
+</html>

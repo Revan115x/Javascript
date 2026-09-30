@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+<div id="div1">
+</div>
+</body>
+<script language="JavaScript">
+codigo="<b>Navegador </b><br>" ;
+codigo+="<br><b>Código Nombre: </b>" + navigator.appCodeName ;
+codigo+="<br><b>Nombre: </b>" + navigator.appName ;
+codigo+="<br><b>Versión: </b>" + navigator.appVersion ;
+codigo+="<br><b>Producto: </b>" + navigator.product ;
+codigo+="<br><b>Cookies habilitadas: </b>" + navigator.cookieEnabled ;
+codigo+="<br><b>Plataforma: </b>" + navigator.platform ;
+codigo+="<br><b>User Agent: </b>" + navigator.userAgent ;
+codigo+="<br><b>Java enabled: </b>" + navigator.javaEnabled() ;
+codigo+="<br><b>Lenguaje </b>" + navigator.language ;
+document.getElementById("div1").innerHTML=codigo;
+</script>
+</html>

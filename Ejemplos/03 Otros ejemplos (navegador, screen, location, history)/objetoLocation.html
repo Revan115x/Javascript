@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <script  type="text/javascript">
+document.write ('<br>href '+location.href+'<br>');
+//location="http://www.google.es/";
+</script>
+</head>
+<body> 
+<input type="button" value="Actualizar" 
+					 onclick="location.reload()"> <br>
+<input type="button" value="Cambio a google" 
+					 onclick="location='http://www.google.es/';"> <br>
+<input type="button" value="Reemplazo por El País" 
+					 onclick="location.replace('http://www.elpais.es/')"> <br>
+<input type="button" value="Asigno Marca" 
+					 onclick="location.assign('http://www.marca.com/')"> <br>
+
+<input type="button" value="Reemplazo por mio" 
+					 onclick='location.replace("ObjetoHistory pag 3.html")'> <br>
+ 
+</body>
+</html>
