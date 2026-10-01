@@ -19,12 +19,17 @@
             web=window.open('','tuya','width=100,height=100');
             web.document.write("<p>Yo sí que me aburro</p>");
             web.document.write("<img src='img/F1.JPG'>");
+            web.document.write('<input type="button" value="Cerrar" onClick="window.close()">');
+        }
+
+        function cerrar_mia(){
+        web.close();
         }
 
     </script>
 
     <input type="button" value="ME ABURRO" onclick="abrir()">
 
-    <input type="button" value="STOP">
+    <input type="button" value="STOP" onclick="cerrar()">
 </body>
 </html>
