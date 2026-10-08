@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+
+<!--Si el usuario no ha entrado nunca se le pide el nombre, un apodo con
+el que saludarle al entrar y un estado (contento, triste, aburrido...)-->
+
+<script>
+    function getCookie(c_name) {
+        let miCookie = document.cookie;
+        let busca = c_name + "=";
+        let esta = miCookie.indexOf(busca);
+        if (esta != -1) {
+            ini = miCookie.indexOf("=", esta) + 1;
+            fin = miCookie.indexOf(";", esta);
+            if (fin != -1)
+                valor = miCookie.substr(ini, fin - ini);
+            else
+                valor = miCookie.substr(ini);
+            return valor;
+        }
+        else
+            return null;
+    }
+
+    function setCookie(c_name, c_value, caducidad) {
+        if (caducidad != null) {
+            let d = new Date();
+            d.setTime(d.getTime() + (caducidad));
+            let expires = "expires=" + d.toGMTString();
+            document.cookie = c_name + "=" + c_value + ";" + expires;
+        }
+        else {
+            document.cookie = c_name + "=" + c_value;
+        }
+        alert(document.cookie);
+    }
+
+    function checkCookie() {
+        let apodo = getCookie("apodo")
+        if (apodo != null) {
+            alert("Bienvenido " + apodo);
+        } else {
+            nombre = prompt("DIME TU NOMBRE");
+            if (nombre != null) {
+                setCookie("nombre",nombre,300000000);
+            }
+        } apodo=prompt("Como te encuentras");
+        if(apodo != null){
+            setCookie("Apodo ",apodo);
+        }
+    }
+
+</script>
+
+<body onload="checkCookie()">
+    <h1>PROBANDO COOKIES</h1>
+    <p>Numero veces has entrado</p><br>
+    <input type="number" id="nVeces">
+    <p>Vez Anterior</p><br>
+    <input type="text" id="uVez"><br><br>
+    <input type="button" value="Limpiar Cokies"></button><br>
+    <input type="button" value="Ir a la otra pagina"></button>
+</body>
+
+</html>

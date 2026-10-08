@@ -1,0 +1,245 @@
+```js
+// ======================================================
+// 🍪 COOKIES JAVASCRIPT — CHULETA
+// ======================================================
+
+
+// ------------------------------------------------------
+// 🧠 ¿QUÉ ES UNA COOKIE?
+// ------------------------------------------------------
+
+// Una cookie es un pequeño dato de texto que el navegador
+// guarda en el ordenador del usuario.
+
+// Sirve para guardar información entre páginas o visitas:
+// usuario, preferencias, sesión, idioma, etc.
+
+// Las cookies pertenecen al dominio que las creó.
+// Una página de otro dominio no puede leerlas.
+
+// En JavaScript trabajamos con:
+// document.cookie
+
+
+// ======================================================
+// 1. CREAR COOKIE
+// ======================================================
+
+document.cookie = "usuario=Juan";
+
+// Crea una cookie llamada "usuario"
+// y le asigna el valor "Juan".
+//
+// nombre = usuario
+// valor  = Juan
+
+
+// ------------------------------------------------------
+// CREAR COOKIE CON CADUCIDAD
+// ------------------------------------------------------
+
+document.cookie =
+    "usuario=Juan; expires=Thu, 31 Dec 2026 23:59:59 GMT";
+
+// "expires" indica la FECHA EXACTA en la que caduca.
+// Si no ponemos expires ni max-age,
+// la cookie dura solamente durante la sesión.
+
+
+// ------------------------------------------------------
+// CREAR COOKIE CON max-age
+// ------------------------------------------------------
+
+document.cookie = "usuario=Juan; max-age=3600";
+
+// max-age indica cuánto tiempo dura la cookie
+// en SEGUNDOS.
+//
+// 3600 segundos = 60 minutos = 1 hora
+
+
+// ------------------------------------------------------
+// CREAR COOKIE CON path
+// ------------------------------------------------------
+
+document.cookie = "usuario=Juan; path=/";
+
+// path indica desde qué ruta de la web
+// se puede acceder a esa cookie.
+//
+// "/" significa que se puede acceder desde
+// cualquier ruta del sitio.
+
+
+// ------------------------------------------------------
+// VARIAS OPCIONES
+// ------------------------------------------------------
+
+document.cookie =
+    "theme=dark; expires=Thu, 31 Dec 2026 23:59:59 GMT; path=/; secure; SameSite=Strict";
+
+// Podemos combinar varios atributos:
+// expires  → fecha de caducidad
+// path     → ruta permitida
+// secure   → solo HTTPS
+// SameSite → controla cuándo se envía la cookie
+
+
+// ======================================================
+// 2. VER / LEER TODAS LAS COOKIES
+// ======================================================
+
+console.log(document.cookie);
+
+// document.cookie devuelve las cookies accesibles
+// para esa página.
+//
+// IMPORTANTE:
+// devuelve un STRING, NO un array ni un objeto.
+//
+// Ejemplo:
+//
+// "usuario=Juan; idioma=es"
+
+
+// Las diferentes cookies aparecen separadas por:
+//
+// ;
+
+
+// ======================================================
+// 3. MODIFICAR UNA COOKIE
+// ======================================================
+
+document.cookie = "usuario=Ana";
+
+// Si ya existe una cookie llamada "usuario",
+// al volver a utilizar ese mismo nombre,
+// se modifica su valor.
+//
+// Antes:
+// usuario=Juan
+//
+// Después:
+// usuario=Ana
+//
+// ⚠️ El nombre identifica la cookie.
+
+
+// ======================================================
+// 4. BORRAR COOKIE
+// ======================================================
+
+document.cookie = "usuario=; max-age=0";
+
+// Ponemos max-age=0.
+//
+// Significa que la cookie debe durar 0 segundos,
+// por lo que desaparece.
+
+
+// ------------------------------------------------------
+// OTRA FORMA DE BORRAR
+// ------------------------------------------------------
+
+document.cookie =
+    "usuario=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+// Ponemos una fecha anterior a la actual.
+// Al estar caducada, la cookie se elimina.
+
+
+// ======================================================
+// 5. FUNCIÓN PARA CREAR / MODIFICAR COOKIE
+// ======================================================
+
+function setCookie(nombre, valor) {
+
+    document.cookie = nombre + "=" + valor;
+
+}
+
+// Ejemplo:
+
+setCookie("usuario", "Juan");
+
+// Resultado:
+//
+// usuario=Juan
+//
+// Esta función sirve tanto para CREAR
+// como para MODIFICAR una cookie.
+//
+// Si "usuario" no existe → la crea.
+// Si "usuario" existe → cambia su valor.
+
+
+// ======================================================
+// 6. SETCOOKIE CON CADUCIDAD
+// ======================================================
+
+function setCookie(nombre, valor, caducidad) {
+
+    let fecha = new Date();
+
+    // Creamos una fecha con la fecha/hora actual.
+
+    let caduca = fecha.getTime() + caducidad * 1000;
+
+    // getTime() convierte la fecha a milisegundos.
+    //
+    // caducidad está expresada en segundos,
+    // por eso multiplicamos por 1000.
+
+    fecha.setTime(caduca);
+
+    // Cambiamos la fecha por la fecha de caducidad.
+
+    document.cookie =
+        nombre + "=" + valor +
+        "; expires=" + fecha.toGMTString() + ";";
+}
+
+// Ejemplo:
+
+setCookie("usuario", "Juan", 3600);
+
+// La cookie durará aproximadamente 1 hora.
+
+
+// ======================================================
+// 7. FUNCIÓN PARA LEER UNA COOKIE CONCRETA
+// ======================================================
+
+function getCookie(nombre) {
+
+    let cookies = document.cookie;
+
+    // Guardamos todas las cookies en un String.
+
+    let busca = nombre + "=";
+
+    // Creamos el texto que queremos buscar.
+    //
+    // Si buscamos "usuario":
+    //
+    // busca = "usuario="
+
+    let posicion = cookies.indexOf(busca);
+
+    // indexOf() busca un texto dentro de otro String.
+    //
+    // Devuelve:
+    // - posición donde lo encuentra
+    // - -1 si NO lo encuentra
+
+
+    if (posicion != -1) {
+
+        // La cookie existe.
+
+
+        let inicio = cookies.indexOf("=", posicion) + 1;
+
+        // Buscamos el "=" y empe
+```
