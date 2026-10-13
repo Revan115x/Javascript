@@ -38,22 +38,65 @@ el que saludarle al entrar y un estado (contento, triste, aburrido...)-->
         else {
             document.cookie = c_name + "=" + c_value;
         }
-        alert(document.cookie);
     }
 
     function checkCookie() {
         let apodo = getCookie("apodo")
+        let nombre = getCookie("nombre")
+        let estado = getCookie("estado")
+        Visitas();
+        fechaAnterior()
         if (apodo != null) {
-            alert("Bienvenido " + apodo);
+            alert("Bienvenido " + getCookie("apodo"));
         } else {
             nombre = prompt("DIME TU NOMBRE");
             if (nombre != null) {
                 setCookie("nombre",nombre,300000000);
             }
-        } apodo=prompt("Como te encuentras");
-        if(apodo != null){
-            setCookie("Apodo ",apodo);
+            apodo = prompt("DIME TU APODO");
+            if (apodo != null) {
+                setCookie("apodo",apodo,300000000);
+            }
+            estado = prompt("DIME TU ESTADO");
+            if (estado != null) {
+                setCookie("estado",estado,300000000);
+            }
         }
+    }
+
+    function Visitas(){
+        let nVeces = getCookie("nVeces");
+        let ultimaVez = getCookie("ultimaVez");
+        let fecha = new Date();
+        if (nVeces != null) {
+            nVeces = parseInt(nVeces) + 1;
+            setCookie("nVeces", nVeces, 300000000);
+            document.getElementById("veces").value = nVeces;
+        } else {
+            nVeces = 1;
+            setCookie("nVeces", nVeces, 300000000);
+            document.getElementById("veces").value = nVeces;
+        }
+    }
+
+    function fechaAnterior(){
+        let fecha = getCookie("ultimaVez");
+        if (fecha != null) {
+            document.getElementById("uVez").value = fecha;
+        } else {
+            document.getElementById("uVez").value = "Primera vez";
+        }
+        let fechaActual = new Date();
+        setCookie("ultimaVez", fechaActual, 300000000);
+    }
+
+    function clearCookies() {
+        setCookie("apodo", "", -1);
+        setCookie("nombre", "", -1);
+        setCookie("estado", "", -1);
+        setCookie("nVeces", "", -1);
+        setCookie("ultimaVez", "", -1);
+        alert("Cookies eliminadas");
     }
 
 </script>
@@ -61,11 +104,11 @@ el que saludarle al entrar y un estado (contento, triste, aburrido...)-->
 <body onload="checkCookie()">
     <h1>PROBANDO COOKIES</h1>
     <p>Numero veces has entrado</p><br>
-    <input type="number" id="nVeces">
+    <input type="number" id="veces" value="0"><br><br>
     <p>Vez Anterior</p><br>
     <input type="text" id="uVez"><br><br>
-    <input type="button" value="Limpiar Cokies"></button><br>
-    <input type="button" value="Ir a la otra pagina"></button>
+    <input type="button" value="Limpiar Cokies" onclick="clearCookies()"></button><br>
+    <input type="button" value="Ir a la otra pagina" onclick="NewWindow()"></button>
 </body>
 
 </html>
