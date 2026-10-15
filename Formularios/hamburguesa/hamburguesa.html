@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title> Pedidos HAMBURGUESAS PEPE'S </title>
+	<script type="text/javascript" src="script.js"></script>
+	<style type="text/css">
+		body {
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 0 auto;
+			max-width: 800px;
+			padding: 2em 2em 4em;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: Impact, Charcoal, sans-serif;
+			color: #222;
+
+		}
+	</style>
+
+<body bgcolor="#D8BFD8">
+	<div align="center">
+		<h1> HAMBURGUESAS PEPE'S </h1>
+		<img src="hamburguesa.jpg" width=300 height=210>
+		<form name="miformulario">
+			<br><br>
+			Elige un tamaño
+			<select id="idtamaño">
+				<option value="0"> Selecciona </option>
+				<option value="2"> Pequeña </option>
+				<option value="3"> Mediana </option>
+				<option value="4"> Grande </option>
+				<option value="5"> Gigante!! </option>
+			</select>
+			<p>
+			<p> Combínala con Patatas o Refresco </p>
+			<input type="checkbox" id="idpatatas"> Patatas
+			<input type="checkbox" id="idrefresco"> Refresco
+			<br><br>
+			¿Cuántas quieres?
+			<br><br>
+
+			<input type="radio" name="cuantas" value="1"> 1 <input type="radio" name="cuantas" value="2"> 2 <input
+				type="radio" name="cuantas" value="3"> 3 <input type="radio" name="cuantas" value="4"> 4 <input
+				type="radio" name="cuantas" value="5"> 5
+			<br><br>
+			<input type="button" value="CALCULAR PRECIO" onclick="calcular()">
+			<br><br>
+			PRECIO TOTAL
+			<input type="text" id="idtotal" size="10">
+			<br><br>
+			<div id="premio" style="display:none">
+				Introduce tu código postal, puedes obtener descuentos!!
+				<input type="text" id="idcodigo" size="10" onchange="verpremio()">
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>
