@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulario Paga Especial</title>
+    <link rel="stylesheet" type="text/css" href="stylenomina.css">
+    <script src="paga.js"></script>
+</head>
+
+<body>
+    <h1>Formulario de Paga Especial</h1>
+    <form id="formulario">
+        
+        <label>Nombre:</label>
+        <input type="text" id="nombre">
+
+        <label>Apellidos:</label>
+        <input type="text" id="apellidos"><br><br>
+
+        <label>Año de Nacimiento:</label>
+        <input type="text" id="anoNacimiento" size="6">
+
+        <label>Año de Entrada a la Empresa:</label>
+        <input type="text" id="anoEntrada" size="6"><br><br>
+
+        <label>Salario Base:</label>
+        <input type="text" id="salarioBase"><br><br>
+
+        <label>Sucursal:</label>
+        <select id="sucursal">
+            <option value="0">Seleccione una opción</option>
+            <option value="100">Madrid</option>
+            <option value="60">Alcobendas</option>
+            <option value="50">San Sebastián de los Reyes</option>
+        </select><br><br>
+
+        <label>Tipo de IRPF:</label><br>
+        <input type="radio" name="irpf" value="19"> 19%
+        <input type="radio" name="irpf" value="24"> 24%
+        <input type="radio" name="irpf" value="30"> 30%<br><br>
+
+        <label>¿Desea recibir correo electrónico?</label>
+        <input type="checkbox" id="correo"><br><br>
+
+        <button type="button" onclick="validarFormulario()">Validar</button>
+
+        <div id="resultado"></div>
+
+    </form>
+
+</body>
+
+</html>
