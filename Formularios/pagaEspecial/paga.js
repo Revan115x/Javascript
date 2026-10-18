@@ -36,13 +36,13 @@ function validarFormulario() {
         return;
     }
 
+    let nacimiento = Number(nacimientoTexto);
+
     if (!Number.isInteger(nacimiento)) {
         alert("El año de nacimiento debe ser un número entero");
         document.getElementById("anoNacimiento").focus();
         return;
     }
-
-    let nacimiento = Number(nacimientoTexto);
     let añoActual = new Date().getFullYear();
 
     if (nacimiento >= añoActual) {
@@ -69,17 +69,18 @@ function validarFormulario() {
         return;
     }
 
-    if (!Number.isInteger(añoEntradaTexto)) {
-        alert("El año de Entrada a la Empresa debe ser un número entero");
+    let añoEntrda = Number(añoEntradaTexto);
+
+    if (!Number.isInteger(añoEntrda)) {
+        alert("El año de entrada debe ser un número entero");
         document.getElementById("anoEntrada").focus();
         return;
     }
 
-    let añoEntrda = Number(añoEntradaTexto);
     let añoEmpresa = new Date().getFullYear();
 
-    if (añoEntrda < añoEmpresa) {
-        alert("No puedes haber entrado antes de crearse la empresa");
+    if (añoEntrda < 2000 || añoEntrda > añoActual) {
+        alert("El año de entrada debe estar entre 2000 y el año actual");
         document.getElementById("anoEntrada").focus();
         return;
     }
@@ -108,7 +109,7 @@ function validarFormulario() {
         return;
     }
 
-    salario = Number(salariotxt);
+    let salario = Number(salariotxt);
 
     if (salario < 1100) {
         alert("NO HAS PODIDO COBRAR MENOS DE 1100€");
@@ -128,36 +129,44 @@ function validarFormulario() {
 
     /******VALIDACIONES DE IRPF*********/
 
-    let porcentaje= 0;
+    let porcentaje = 0;
     let IRPF = document.getElementsByName("irpf");
 
     for (let i = 0; i < IRPF.length; i++) {
 
         if (IRPF[i].checked) {
-            porcentaje=Number(IRPF[i].value);
+            porcentaje = Number(IRPF[i].value);
             break;
         }
     }
 
-    if(porcentaje==0){
+    if (porcentaje == 0) {
         alert("DEBES SELECIONAR UNA OPCION DE IRPF");
-        document.getElementsByName("irpf").focus();
+        IRPF[0].focus();
         return;
     }
 
+    let añosTrabajados = añoActual - añoEntrda;
+    let trienios = Math.floor(añosTrabajados / 3);
+    let pagaTrienios = salario * 0.10 * trienios;
+    let pagaConBonificacion = pagaTrienios + Sucursal;
+    let importeIRPF = pagaConBonificacion * porcentaje / 100;
+    let pagaFinal = pagaConBonificacion - importeIRPF;
+
+    let correo = document.getElementById("correo");
+
+    if (correo.checked) {
+        alert("La información se enviará a tu correo electrónico");
+    }
+
+    document.getElementById("resultado").innerHTML =
+        "Nombre: " + nombre +
+        "<br>Años trabajados: " + añosTrabajados +
+        "<br>Trienios: " + trienios +
+        "<br>Paga por trienios: " + pagaTrienios + " €" +
+        "<br>Bonificación: " + Sucursal + " €" +
+        "<br>IRPF: " + porcentaje + "%" +
+        "<br>Importe del IRPF: " + importeIRPF + " €" +
+        "<br><strong>Paga especial final: " + pagaFinal + " €</strong>";
+
 }
-
-/* Tipo de IRPF
- Ha de seleccionarse un IRPF
-Si todo ha ido bien se calcula la paga especial del siguiente modo:
- Se calculan los trienios que se han trabajado
- Se calcula la paga especial:
-
-Paga especial = 10% del salario base * número de trienios
- Se le añade una bonificación especial según la sucursal en que trabaja
- Se calcula el IRPF de la paga especial y se le resta 
-
-Se carga un mensaje en el div de id “resultado” con los cálculos efectuados y el
-importe de la paga especial.
-Si se ha clicado el check del correo electrónico mostrar una alerta indicando que esta
-información se le enviará al correo.*/
