@@ -324,3 +324,8 @@ El `+ 1` se utiliza para mostrar el mes como lo escribimos normalmente.
 8. Para comprobar una fecha, puedes utilizar `isNaN(fecha)` o `Number.isNaN(fecha.getTime())`.
 9. `setMonth()` también utiliza meses de `0` a `11`.
 10. `getTime()` devuelve milisegundos, no segundos.
+
+new Date()	Una fecha y hora	Date (objeto)
+Inicio.getTime()	Milisegundos desde 1970	Number
+fin.getTime()	Milisegundos desde 1970	Number
+fin.getTime() - Inicio.getTime()	Diferencia en milisegundos	Number

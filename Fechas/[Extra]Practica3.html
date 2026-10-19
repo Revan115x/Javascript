@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,16 +97,16 @@
     }
   </style>
   <script>
-  function fecha_01(){
-    const FechaActual = Date.now();
+    function fecha_01() {
+      const FechaActual = Date.now();
 
-    alert(FechaActual.toDateString());
+      alert(FechaActual.toDateString());
     }
-  function fecha_02(){
+    function fecha_02() {
     }
-  function fecha_03(){  
+    function fecha_03() {
     }
-    
+
   </script>
 </head>
 
@@ -175,18 +176,14 @@
 
       <form>
         <label for="mesAnio">Fecha:</label>
-        <input
-          type="text"
-          id="mesAnio"
-          name="mesAnio"
-          placeholder="mm/yyyy"
-        >
+        <input type="text" id="mesAnio" name="mesAnio" placeholder="mm/yyyy">
 
         <button type="button" onclick="fecha_03()">Trienios en la empresa</button>
       </form>
     </div>
-   </div>
+  </div>
   </div>
 
 </body>
+
 </html>

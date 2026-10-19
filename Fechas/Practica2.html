@@ -11,7 +11,22 @@
 
     <script>
 
-        let fecha=new Date(2024,7,23)
+        let fecha = new Date(2024,7,23);
+        let fechaActual = new Date();
+
+        let milisegFecha = fecha.getTime();
+        let milisegActual = fechaActual.getTime();
+
+        let diferencia = milisegActual - milisegFecha;
+
+        let Segundos = diferencia / 1000;
+        let Minutos = Segundos / 60 ;
+        let Horas = Minutos / 60 ;
+        let Dias = Horas / 24 ;
+
+        /*let Dias = diferencia / (1000 * 60 * 60 * 24);*/
+
+        alert("Han Pasado "+Math.floor(Dias));
 
     </script>
     

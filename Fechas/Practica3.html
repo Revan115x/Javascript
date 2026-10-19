@@ -1,0 +1,73 @@
+/*Pedir al usuario que introduzca su fecha de nacimiento en formato dd/mm/yyyy
+(recogemos como una única cadena) y mostramos por pantalla el día de la semana en
+que nació en castellano y su edad actual.*/
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <Script>
+
+        let fecha = prompt("Introduce tu fecha de nacimiento (dd/mm/yyyy)");
+
+        let dia = Number(fecha.substring(0, 2));
+        let mes = Number(fecha.substring(3, 5));
+        let año = Number(fecha.substring(6, 10));
+
+        let fechaNacimiento = new Date(año, mes - 1, dia);
+        let fechaActual = new Date();
+
+        // Obtener el día de la semana
+        let diaSemana = fechaNacimiento.getDay();
+
+        let dias = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+
+        alert("Naciste en " + dias[diaSemana]);
+
+        if (fechaActual.getMonth() < mes - 1 ||
+            (fechaActual.getMonth() == mes - 1 &&
+                fechaActual.getDate() < dia)) {
+            edad--;
+        }
+
+        let edad = fechaActual.getFullYear() - año;
+
+        alert("Tu edad es de " + edad + " años");
+
+        /*
+        switch (diaSemana) {
+            case 0:
+                alert("Naciste en domingo");
+                break;
+            case 1:
+                alert("Naciste en lunes");
+                break;
+            case 2:
+                alert("Naciste en martes");
+                break;
+            case 3:
+                alert("Naciste en miércoles");
+                break;
+            case 4:
+                alert("Naciste en jueves");
+                break;
+            case 5:
+                alert("Naciste en viernes");
+                break;
+            case 6:
+                alert("Naciste en sábado");
+                break;
+        }*/
+
+    </Script>
+
+</body>
+
+</html>
