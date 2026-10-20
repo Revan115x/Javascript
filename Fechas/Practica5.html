@@ -2,12 +2,23 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <script>
+        let hoy = new Date();
+
+        alert("Hoy es: " + hoy.toLocaleDateString());
+
+        hoy.setDate(hoy.getDate() + 100);
+
+        alert("Dentro de 100 días será: " + hoy.toLocaleDateString());
+    </script>
 </body>
+
 </html>
