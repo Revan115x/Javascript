@@ -97,16 +97,64 @@
     }
   </style>
   <script>
+    /*Muestra un mensaje de error si pulsan el botón sin haber seleccionado ninguna fecha*/
     function fecha_01() {
-      const FechaActual = Date.now();
+      let fechaTxt = document.getElementById("fecha").value;
 
-      alert(FechaActual.toDateString());
+      if (fechaTxt == "") {
+        alert("Rellena el Campo Fecha")
+      }
+
+      let fechaActual = new Date();
+      let fechaSeleccionada = new Date(fechaTxt);
+
+      /*diferencia devuelta en milisegundos*/
+      let diferencia = fechaActual - fechaSeleccionada;
+      /*Diferencia de dias se multiplica por 1000 * 60 * 60 * 24 para convertir de milisegundos a días */
+      let diasDiferencia = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+      alert("Han pasado " + diasDiferencia + " días desde la fecha seleccionada.");
     }
+
     function fecha_02() {
+      let diaTxt = document.getElementById("dia").value;
+      let mesTxt = document.getElementById("mes").value;
+      let anioTxt = document.getElementById("anio").value;
+
+      if (diaTxt == "" || mesTxt == "" || anioTxt == "") {
+        alert("Rellena todos los campos de la fecha")
+      }
+
+      if (diaTxt < 1 || diaTxt > 31) {
+        alert("El día debe estar entre 1 y 31")
+      }
+      if (mesTxt < 1 || mesTxt > 12) {
+        alert("El mes debe estar entre 1 y 12")
+      }
+      if (anioTxt < 1900 || anioTxt > 2100) {
+        alert("El año debe estar entre 1900 y 2100")
+      }
+
+      let fechaNacimiento = new Date(anioTxt, mesTxt - 1, diaTxt);
+      let fechaActual = new Date();
+
+      if (fechaNacimiento > fechaActual) {
+        alert("La fecha de nacimiento no puede ser mayor que la fecha actual");
+        return;
+      }
+
+      
+      let edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+      /*Verifica si el cumpleaños ya ha pasado este año*/
+      if (fechaNacimiento.getMonth() > fechaActual.getMonth() || (fechaNacimiento.getMonth() === fechaActual.getMonth() && fechaNacimiento.getDate() > fechaActual.getDate())) {
+        edad--;
+      }
+
+      alert("La edad de esta persona es: " + edad + " años");
     }
     function fecha_03() {
+      let mesAnioTxt = document.getElementById("mesAnio").value;
     }
-
   </script>
 </head>
 
