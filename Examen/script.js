@@ -1,3 +1,6 @@
+let numeroSecreto;
+let maxDias;
+
 function getCookie(c_name) {
     let miCookie = document.cookie;
     let busca = c_name + "=";
@@ -158,12 +161,31 @@ function ir() {
     }
 }
 
-let numeroSecreto;
-let maxDias;
+let temporizador;
 
 function jugar() {
     numeroSecreto = Math.floor(Math.random() * maxDias) + 1;
+    temporizador = setInterval(contar, 3000);
 }
 
 function comprobar() {
-} 
+    let num = Number(document.getElementById("numero").value);
+    let premio = document.getElementById("premio");
+    if (numeroSecreto == num) {
+        alert("Has ganado " + premio.textContent + " euros");
+        clearInterval(temporizador);
+    }
+}
+
+function contar() {
+    let premio = document.getElementById("premio");
+    let cantidad = Number(premio.textContent);
+    if (cantidad > 0) {
+        let resultado = cantidad - 1;
+        premio.textContent = resultado;
+        //document.getElementById("premio").innerHTML = resultado ;
+        if (resultado == 0) {
+            clearInterval(temporizador);
+        }
+    }
+}
