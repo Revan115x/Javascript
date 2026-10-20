@@ -41,9 +41,9 @@ function preguntar() {
         }
     }
 }
-
+/*CORREGIR, VALIDAR CREANDO UNA LISTA ,QUITAR LOS RETURN,USAR TRIM,LIMPIAR LISTA DE ERRORES */
 function validar() {
-    let mesTxt = document.getElementById("mes").value;
+    let mesTxt = document.getElementById("mes").value.trim();
 
     if (mesTxt == "") {
         document.getElementById("errores").innerHTML =
