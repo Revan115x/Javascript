@@ -1,41 +1,111 @@
 <html>
+
 <head>
-<style type="text/css">
- body{text-align:center;
-   font-family:"Trebuchet MS", Helvetica, sans-serif;
-   color:#210B61;
-   font-size:10pt;
- }
-div{
-	width:600px;
-	margin-left:auto;
-	margin-right:auto;
-	}
-#pos1 {
-	position:relative;
-	background-color:#F5DA81;
-}
-#boton{
-	visibility:hidden;
-	}
+	<style type="text/css">
+		body {
+			text-align: center;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+			color: #210B61;
+			font-size: 10pt;
+		}
 
+		div {
+			width: 600px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		#pos1 {
+			position: relative;
+			background-color: #F5DA81;
+		}
+
+		#boton {
+			visibility: hidden;
+		}
 	</style>
-<script type="text/javascript">
- var imagenes = new Array ('F1.JPG','F2.JPG','F3.JPG','F4.JPG','F5.JPG','F6.JPG','F7.JPG','F8.JPG');
-</script>
-</head>
-<body>
-<h1>JUGANDO A LAS PAREJAS</h1>
-<div id="central">
-<fieldset id="pos1">
-Bienvenido a nuestra web, puedes jugar y divertirte
-</fieldset>
-<div id="div1">
-<img id="img1">
-<br><br>
-<input type="button" id="boton" value="Entrar a Jugar" >
-</div>
-</div>
+	<script type="text/javascript">
+		var imagenes = new Array('F1.JPG', 'F2.JPG', 'F3.JPG', 'F4.JPG', 'F5.JPG', 'F6.JPG', 'F7.JPG', 'F8.JPG');
 
- </body>
+		var temporizador;
+
+		// Guarda el índice de la última imagen mostrada
+		// -1 significa que todavía no se ha mostrado ninguna
+		var ultimaImagen = -1;
+
+
+		function mostrarImagen() {
+
+			// Generamos un número aleatorio entre 0 y 7
+			var indice = Math.floor(Math.random() * imagenes.length);
+
+			// Si sale la misma imagen que la anterior,
+			// generamos otro número aleatorio
+			while (indice == ultimaImagen) {
+				indice = Math.floor(Math.random() * imagenes.length);
+			}
+
+			// Guardamos el índice de la imagen elegida
+			ultimaImagen = indice;
+
+			// Mostramos la imagen seleccionada en img1
+			document.getElementById("img1").src = imagenes[indice];
+		}
+
+
+		// Se ejecuta cuando hacemos clic sobre la imagen
+		function detener() {
+
+			// Detenemos el cambio automático de imágenes
+			clearInterval(temporizador);
+
+			// Hacemos visible el botón para entrar a jugar
+			document.getElementById("boton").style.visibility = "visible";
+
+			// Quitamos el evento onclick para evitar repetir la acción
+			document.getElementById("img1").onclick = null;
+		}
+
+
+		// Se ejecuta cuando pulsamos el botón
+		function entrar() {
+
+			// Cambia la página a la que corresponda en el ejercicio
+			window.location.href = "juego.html";
+		}
+
+
+		// Se ejecuta cuando termina de cargar el documento
+		function iniciar() {
+
+			// Mostramos una primera imagen inmediatamente
+			mostrarImagen();
+
+			// Cambiamos la imagen cada 1000 milisegundos (1 segundo)
+			temporizador = setInterval(mostrarImagen, 1000);
+
+			// Al pulsar la imagen, detenemos el cambio
+			document.getElementById("img1").onclick = detener;
+
+			// Al pulsar el botón, pasamos a la siguiente página
+			document.getElementById("boton").onclick = entrar;
+		}
+	</script>
+</head>
+
+<body>
+	<h1>JUGANDO A LAS PAREJAS</h1>
+	<div id="central">
+		<fieldset id="pos1">
+			Bienvenido a nuestra web, puedes jugar y divertirte
+		</fieldset>
+		<div id="div1">
+			<img id="img1">
+			<br><br>
+			<input type="button" id="boton" value="Entrar a Jugar">
+		</div>
+	</div>
+
+</body>
+
 </html>
