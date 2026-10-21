@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CONTROL FORMULARIOS</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="Sesion.js"></script>
+    <script>
+    </script>
+</head>
+
+<body onload="iniciar()">
+    <div id="idlogin" style="text-align: right;">
+    </div>
+    <h1>CASA RURAL LA PREFERIDA </h1>
+    <img src="foto1.png" id="idimg" width="200" height="200">
+    <h3>Solicite información para su reserva a día <span id="fhoy"> </span> </h3>
+
+
+    <div>
+        Puede reservar nuestra encantadora docasa rural en las siguientes modalidades:
+        <br>
+        <ul>
+            <li> Opción A: Entrada viernes y salida el domingo (2 noches) <span>400€</span></li>
+            <li> Opción B: Entrada de lunes a jueves y salida el domingo <span>600€</span></li>
+            <li> Opción C: Entrada de lunes a jueves y salida de martes a viernes <span>50€ la noche</span></li>
+        </ul>
+    </div>
+    <form>
+        Día Entrada&nbsp <input type="date" id="fent" size="8">
+        Día Salida&nbsp&nbsp <input type="date" id="fsal" size="8">
+        Días:&nbsp&nbsp <input type="text" id="dias" size="2" readonly><br> <br>
+    </form>
+    <div id="mensaje">*** DISPONIBILIDAD ***</div>
+    <input type="button" value="COMPROBAR DISPONIBILIDAD" onclick="validar()"> <br><br>
+    <div id="masinfo" style="display:none">
+        <input type="button" value="Más información" onclick="pedir()">
+        Déjenos su correo <input type="text" id="correo" size="20">
+    </div>
+    <br>
+    <button onclick="alert(document.cookie)">ver cookies</button>
+</body>
+
+</html>
