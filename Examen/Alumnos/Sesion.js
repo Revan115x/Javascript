@@ -143,7 +143,7 @@ function validar() {
 
     /*NO ME DA TIEMPO A LOS CALCULOS POR DIAS */
 
-    let Dias = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"];
+    let Dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
 
     precio = 0
 
