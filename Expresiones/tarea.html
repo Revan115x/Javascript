@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio</title>
+    <script type="text/javascript">
+
+        function ftelefono() {
+            texto = document.getElementById("contenido").textContent;
+            re = /\d{9}/g;
+            console.log(texto.match(re));
+
+            function fcorreo() {
+
+            }
+
+            function ftelefono() {
+                texto = document.getElementById("contenido").textContent;
+                re = /\d{9}/g;
+                console.log(texto.match(re));
+            }
+
+            function fcodigo() {
+
+            }
+
+            function ffecha() {
+
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="contenido">
+
+        <br>Contacto: almudena.barrido@gmail.com
+        <br>Teléfono: 678334332
+        <br>Código postal: 28029
+        <br>Fecha: 21/10/2026
+
+        <br><br>    
+
+        <br>Contacto: ana@gmail.com
+        <br>Teléfono: 612345678
+        <br>Código postal: 28013
+        <br>Fecha: 21/10/2026
+
+        <br><br>
+
+        <br>Contacto: ernesto_cesto@hotmail.com
+        <br>Teléfono: 611366331
+        <br>Código postal: 28015
+        <br>Fecha: 22/10/2026
+
+        <br><br>
+
+        <br>Contacto: ana6699@gmail.com
+        <br>Teléfono: 674884336
+        <br>Código postal: 28015
+        <br>Fecha: 22/10/2026
+
+    </div>
+    <br><br>
+    <button onclick="fcorreo()"> Extraer correos </button>
+    <button onclick="ftelefono()"> Extraer teléfonos</button>
+    <button onclick="fcodigo()"> Extraer códigos postales</button>
+    <button onclick="ffecha()"> Extraer fechas</button>
+</body>
+
+</html>
