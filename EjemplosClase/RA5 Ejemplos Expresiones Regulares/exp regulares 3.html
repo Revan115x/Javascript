@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        //--------------------------------------
+        // 		EJEMPLO 5: vocales en la cadena
+        console.log('EJEMPLO 5: vocales en la cadena');
+        let re = /[aeiouáéíóú]/gi;
+        let texto = "Hola manola, hola pepón";
+        console.log(re.test(texto)); // true
+        console.log(texto.match(re)); //o,a,a,o,a,o,a,e,ó
+        // 		EJEMPLO 6: lo que no son vocales 
+        console.log('EJEMPLO 6: lo que no son vocales');
+        re = /[^aeiou]/gi;
+        texto = "Hola";
+        console.log(re.test(texto)); // true
+        console.log(texto.match(re)); // H,l
+
+        // 		EJEMPLO 7: dígitos
+        console.log('EJEMPLO 7: dígitos');
+        re = /[0-9]/g;
+        texto = "Hola 1,2,3...";
+        console.log(re.test(texto)); // true
+        console.log(texto.match(re)); // 1,2,3
+        // 		EJEMPLO 8: letras sin la ñ o dígitos (caracteres alfanuméricos)
+        console.log('EJEMPLO 8: letras sin la ñ');
+        re = /[a-z0-9]/gi;
+        texto = "Hola ñoño 1,2,3...";
+        console.log(re.test(texto)); //true
+        console.log(texto.match(re)); // H,o,l,a,o,o,1,2,3
+        // 		EJEMPLO 9: letras de la 'a' a la 'd' o de la 'x' a la 'z' o digitos o 
+        console.log("EJEMPLO 9: letras de la 'a' a la 'd' o de la 'x' a la 'z' o digitos");
+        re = /[a-d0-9x-z]/gi;
+        texto = "Hola mozo 1,2,3...";
+        console.log(re.test(texto)); //true
+        console.log(texto.match(re)); // a,z,1,2,3
+        // 		EJEMPLO 10: contiene algo que no son letras
+        console.log('EJEMPLO 10: contiene algo que no son letras');
+        re = /[^a-z]/gi;
+        texto = "Hola";
+        console.log(re.test(texto)); // false
+        console.log(texto.match(re)); // null
+        texto = "Hola Lola";
+        console.log(re.test(texto)); // true
+        console.log(texto.match(re)); // ' '  
+        // 		EJEMPLO 11: contiene alguna de las cadenas especificadas
+        console.log('EJEMPLO 11: contiene alguna de las cadenas especificadas');
+        re = /(rojo|verde|azul)/gi;
+        texto = "Mi color preferido es el verde y el AZUL";
+        console.log(re.test(texto)); // true
+        console.log(texto.match(re)); // verde,AZUL
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        // 		EJEMPLO 1 
+        let re = /mola/;
+        let cad1 = 'Me mola mucho';
+        let cad2 = "Mola la gramola";
+        let cad3 = "MOLA!!!";
+        console.log(re.test(cad1)); // true 
+        console.log(re.test(cad2)); // true 
+        console.log(re.test(cad3)); // false 
+        console.log(cad1.match(re)); // mola
+        console.log(cad2.match(re)); // mola
+        console.log(cad3.match(re)); // null 
+        let re2 = /mola/gi
+        console.log(cad1.match(re2)); // mola
+        console.log(cad2.match(re2)); // Mola,mola
+        console.log(cad3.match(re2)); // MOLA 
+
+        console.log(cad1.search(re)); // 3
+        console.log(cad2.search(re)); // 11
+        console.log(cad3.search(re)); // -1
+
+        cad4 = cad2.replace(re, 'odio');
+        console.log(cad4); // Mola la graodio
+
+        re3 = /[mola]/gi;
+        console.log(re3.test(cad1)); // true 
+        console.log(re3.test(cad2)); // true 
+        console.log(re3.test(cad3)); // true 
+        console.log(cad1.match(re3)); // M,m,o,l,a,m,o
+        console.log(cad2.match(re3)); // M,o,l,a,l,a,a,m,o,l,a
+        console.log(cad3.match(re3)); // M,O,L,A
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

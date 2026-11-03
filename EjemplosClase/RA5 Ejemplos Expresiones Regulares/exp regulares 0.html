@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        // 		EJEMPLO 0 
+        let cad1 = 'Me mola mucho';
+        {
+            let re = /m/;
+
+            console.log(re.test(cad1)); // true 
+            console.log(cad1.match(re)); // m
+            console.log(cad1.search(re)); // 3
+        }
+        {
+            let re = /m/g;
+            console.log(re.test(cad1)); // true 
+            console.log(cad1.match(re)); // m,m
+            console.log(cad1.search(re)); // 3 
+        }
+        {
+            let re = /m/gi;
+            console.log(re.test(cad1)); // true 
+            console.log(cad1.match(re)); // M,m,m
+            console.log(cad1.search(re)); // 0 
+        }
+        {
+            // CUIDADO!! 
+            let re = /m/g;
+            console.log(re.test(cad1)); // true 
+            console.log(re.test(cad1)); // true 
+            console.log(re.test(cad1)); // false 
+            console.log(re.test(cad1)); // true 
+            console.log(re.test(cad1)); // true 
+            console.log(re.test(cad1)); // false
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

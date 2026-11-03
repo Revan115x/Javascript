@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function test() {
+            texto = document.form.texto.value;
+            let m = '';
+            if (document.form.c1.checked)
+                m += 'g';
+            if (document.form.c2.checked)
+                m += 'i';
+            var re = new RegExp(document.form.re.value, m);
+            alert(re.test(texto));
+        }
+
+        function match() {
+            texto = document.form.texto.value;
+            let m = '';
+            if (document.form.c1.checked)
+                m += 'g';
+            if (document.form.c2.checked)
+                m += 'i';
+            let re = new RegExp(document.form.re.value, m);
+            alert(texto.match(re));
+        }
+    </script>
+    <style type="text/css">
+        body {
+            font-family: Verdana, sans-serif;
+            font-size: 18px;
+            font-weight: bold
+        }
+    </style>
+</head>
+
+<body>
+    <br><br><br>
+    <div align="center">
+        <form name="form">
+            Introduce texto<input type="text" name="texto" size="50">
+            <br>Introduce RegExp<input type="text" name="re" size="50">
+            <br><br> Global <input type="checkbox" id="c1" checked> Mayúsculas y minúsculas <input type="checkbox" id="c2" checked>
+            <br><br>
+            <input type="button" value="test" onclick="test()">
+            <input type="button" value="match" onclick="match()">
+        </form>
+    </div>
+</body>
+
+</html>

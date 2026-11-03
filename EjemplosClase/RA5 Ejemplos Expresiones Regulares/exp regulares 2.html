@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        // 		EJEMPLO 1: test()
+        console.log('EJEMPLO 1: test()');
+        let re1 = new RegExp('mola');
+        let re2 = /patata/;
+        let texto = 'como me mola las patatas';
+        console.log(re2.test(texto)); // true 
+        console.log(re1.test(texto)); // true
+
+        // 		EJEMPLO 2: match()
+        console.log('EJEMPLO 2: match()');
+        console.log(texto.match(re2)) // patata
+        texto = 'Como Me Molan Las Patatas';
+        let re3 = /[lpt]a/g;
+        esta = texto.match(re3);
+        console.log(esta); // la,ta,ta
+        re3 = /[lpt]a/i;
+        esta = texto.match(re3);
+        console.log(esta); // la
+        re3 = /[lpt]a/gi;
+        esta = texto.match(re3);
+        console.log(esta); // la,La,Pa,ta,ta
+        //		EJEMPLO 3: search()
+        console.log('EJEMPLO 3: search()');
+        texto = 'Como Me Molan Las Patatas';
+        let re = /[MPT]/;
+        console.log(texto.search(re)); // 5
+        re = /[MPT]/gi;
+        console.log(texto.search(re)); // 2
+        re = /[xyz]/i;
+        console.log(texto.search(re)); //  -1
+        //		EJEMPLO 4: replace()
+        console.log('EJEMPLO 4: replace()');
+        texto = 'Como Me Molan Las Patatas';
+        re = /[MPT]/;
+        console.log(texto.replace(re, '*')); // 'Como *e Molan Las Patatas'
+        re = /[MPT]/gi;
+        console.log(texto.replace(re, '*')); // 'Co*o *e *olan Las *a*a*as'
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

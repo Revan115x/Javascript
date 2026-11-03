@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        // CUANTIFICADORES
+        // 		EJEMPLO 12: + 1 o más veces
+        console.log('EJEMPLO 12: + 1 o más veces');
+        let re = /p+/;
+        let texto = "hola";
+        console.log(re.test(texto)); // false
+        texto = "hola pepe";
+        console.log(re.test(texto)); // true
+        // 		EJEMPLO 13: * 0 o más veces
+        console.log('EJEMPLO 13: * 0 o más veces');
+        re = /p*/;
+        texto = "hola";
+        console.log(re.test(texto)); // true
+        texto = "hola pepe";
+        console.log(re.test(texto)); // true  
+        // 		EJEMPLO 14: ? 0 o 1 vez
+        console.log('EJEMPLO 14: ? 0 o 1 vez');
+        re = /p?/;
+        texto = "hola";
+        console.log(re.test(texto)); // true
+        texto = "hola pepe";
+        console.log(re.test(texto)); // true
+
+        //		EJEMPLO 15: ^  Empieza por
+        console.log('EJEMPLO 15: ^  Empieza por');
+        re = /^A/;
+        texto = 'Amar';
+        console.log(texto.match(re));
+        console.log(re.test('Amar'));
+        console.log(re.test('amar'));
+        //		EJEMPLO 16: $  Acaba por
+        console.log('EJEMPLO 16: $  Acaba por');
+        re = /A$/i;
+        console.log(re.test('AmA')); // true 
+        console.log(re.test('ama')); // true  
+        //		EJEMPLO 17:  
+        console.log('EJEMPLO 17: ');
+        re = /^[0-9]{3}/;
+        console.log(re.test('12patata12')); // false
+        console.log(re.test('123patata12')); // true
+        console.log(re.test('1234patata12')); // true
+        //		EJEMPLO 18:  
+        console.log('EJEMPLO 18: ');
+        re = /(abc[01]){2}/;
+
+        console.log(re.test('abc0abc1')); // true
+        console.log(re.test('abc0****abc1')); // false
+        console.log(re.test('***abc0abc1abc0***')); // true
+        //		EJEMPLO 19:  
+        console.log('EJEMPLO 19: ');
+        re = /pa(?=ta)/;
+        console.log(re.test('pato con patatas')); // true
+        //		EJEMPLO 20:  
+        console.log('EJEMPLO 20: ');
+        re = /pa(?!ta)/;
+        console.log(re.test('pato con patatas')); // false
+        //		EJEMPLO 21: 
+        console.log('EJEMPLO 21: ');
+        re = /1{2,3}234/;
+        console.log(re.test('234')); // false
+        console.log(re.test('1234')); // false
+        console.log(re.test('11234')); // true
+        console.log(re.test('111234')); // true
+        console.log(re.test('1111234')); // true
+        re = /^1{2,3}234/;
+        console.log(re.test("11234")); //true
+        console.log(re.test("111234")); // true
+        console.log(re.test("1111234")); // false
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
