@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<h2>Eventos del ratón</h2>
+<h2>Pulsa en el ratón</h2>
+
+ 
+
+<img id="imagen" width="220" height="200" src="raton.jpg"></img>
+<div id="div">
+</div>
+</body>
+<script>
+var x = document.getElementById("imagen");
+x.addEventListener("click", cargar);
+x.addEventListener("dblclick", cargar);
+x.addEventListener("mouseenter", cargar);
+x.addEventListener("mouseleave", cargar);
+x.addEventListener("mouseout", cargar);
+x.addEventListener("mouseover", cargar);
+x.addEventListener("mousedown", cargar);
+x.addEventListener("mouseup", cargar);
+
+function cargar (event){
+document.getElementById("div").innerHTML+="<br>"+event.type;
+}
+
+
+</script>
+</html>

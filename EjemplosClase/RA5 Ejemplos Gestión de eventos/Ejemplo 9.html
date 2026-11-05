@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script type="text/javascript">
+function coordenadas(evento){
+ alert ('Coordenadas respecto Navegador ['+evento.clientX+','+evento.clientY+']'+'\n'+
+	   'Coordenadas respecto Pantalla  ['+evento.screenX+','+evento.screenY+']'+'\n'+
+	   'Coordenadas respecto Página    ['+evento.pageX +','+evento.pageY+']');
+}
+function mostrar(evento){
+document.getElementById('div').innerHTML='RATON<br>['+evento.clientX+','+evento.clientY+']';
+}
+</script>
+</head>
+<body onclick="coordenadas(event)" onmousemove="mostrar(event)">
+<div id="div">
+</div>
+a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>v
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script>
+var mensaje='';
+function muestraInformacion(evento) {
+ mensaje = mensaje+ "Tipo de evento: " + evento.type + "<br>"; 
+ mensaje = mensaje+ "Propiedad keyCode: " + evento.keyCode + "<br>";
+ mensaje = mensaje+ "Propiedad key: " + evento.key + "<br><br>" ;
+ document.getElementById("idmen").innerHTML=mensaje;
+
+}
+ 
+ 
+</script>
+</head>
+<body>
+ <input type="text" size="20" onkeydown="mensaje='';muestraInformacion(event);"
+	  onkeypress="muestraInformacion(event)"
+	  onkeyup="muestraInformacion(event)" >
+<div id="idmen">
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type">
+<script type="text/javascript">
+function cargada(){
+alert('Bienvenido. Carga completa');
+}
+
+function limpiar(){
+alert("Voy a borrarlo todo");
+return (window.confirm("Pero tienes que confirmarlo"));
+}
+function redimensionar(){
+document.getElementById("idmen").innerHTML+="No toques, ¿por qué tocas?";
+}
+function seleccionar(){
+alert ("Has seleccionado Nombre");
+}
+function cambiar(){
+alert ("Oh! Lo cambiaste!");
+}
+
+</script>
+</head>
+<body onload="cargada()" onresize="redimensionar()">
+<form onreset="return limpiar()">
+Nombre <input type="text" value="Nombre" onselect="seleccionar()" onchange="cambiar()">
+<br>Apellido <input type="text" onfocus="this.style.background='yellow'" onblur="this.style.background='white'">
+<br>Sexo<select name="sexo" onchange="cambiar()">
+			<option value="M">Mujer</option>
+			<option value="H">Hombre</option>
+            <option value="NC">Prefiero no contestar</option>
+		</select>
+<input type="reset" value="borrar">
+<div id="idmen"> 
+</div>
+</form>
+
+</body>
+<script type="text/javascript">
+   document.getElementById ("idmen").innerHTML = 'Bienvenidos';
+</script>
+</html>

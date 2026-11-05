@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style>
+div {
+	margin-left:40px;
+	margin-top:40px;
+	}
+</style>
+<script>
+function resalta(elemento) {
+switch(elemento.style.borderColor) {
+case 'silver':
+elemento.style.borderColor = 'black';
+break;
+case 'black':
+elemento.style.borderColor = 'silver';
+break;
+}
+}
+</script>
+</head>
+<body>
+<div style="width:150px; height:60px; border:thin solid silver; background:#b0c4de"
+	onmouseover="this.style.background='silver'" onmouseout="this.style.background='#b0c4de'">
+Pasa por encima...
+</div> 
+<br><br>
+<div style="width:150px; height:60px; border:thin solid silver"
+onmouseover="resalta(this)" onmouseout="resalta(this)">
+Sección de contenidos...
+</div>
+</body>
+</html>
+

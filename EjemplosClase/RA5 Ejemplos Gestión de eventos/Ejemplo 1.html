@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style>
+div {
+	margin-left:40px;
+	margin-top:40px;
+	}
+</style>
+<script>
+<!--
+function contarClicks(){
+cont++;
+document.getElementById("idclick").value=cont;
+}
+function quienClica(elemento){
+document.getElementById("id5").innerHTML+="<br>Clica "+elemento.name;
+}
+function quePasa (evento){
+document.getElementById("id5").innerHTML+="<br>"+evento.type;
+if (evento.type=="mouseover")
+document.getElementById("id5").style.color="yellow";
+else
+ document.getElementById("id5").style.color="blue";
+}
+//-->
+</script>
+</head>
+<body  onload="cont=0;document.forms[0].reset()" onclick="contarClicks()">
+<h4> EJEMPLO 1 </h4>
+<form>
+<div>
+CAJA 1<input type="text" size="10" onclick="alert('Has entrado en la caja 1')"> 
+CAJA 2<input type="text" size="10" name="caja2" onclick="contarClicks()"><br><br><br>
+CAJA 3<input type="text" size="10" name="caja3" onclick="quienClica(this)"> 
+CAJA 4<input type="text" size="10" name="caja4" onclick="quienClica(this)"><br><br><br>
+CAJA 5<input type="text" size="10" onmouseover="quePasa(event)" onmouseout="quePasa(event)"><br><br><br>
+CLICKS <input type="text" id="idclick" readonly="readonly"><br><br>
+</div>
+<div id="id5">
+
+</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<h2>JavaScript addEventListener()</h2>
+
+<p>Podemos añadir varios manejadores de eventos mediante addEventListener</p>
+
+<button id="boton" onclick="alert('Gracias por pulsar')">Púlsame</button>
+<button id="botonaux" onclick="alert('Yo soy el auxiliar')">Soy un auxiliar</button>
+
+<script>
+var x = document.getElementById("boton");
+x.addEventListener("click", funcionUna);
+x.addEventListener("click", funcionOtra);
+document.getElementById("botonaux").onclick=funcionCambio;
+
+function funcionUna() {
+    alert ("Hola, soy Una.\nMe ejecuto primero ");
+	}
+function funcionOtra() {
+    alert ("Hola, soy Otra.\nMe ejecuto después");
+	x.removeEventListener("click", funcionOtra);
+}
+function funcionCambio() {
+    alert ("Hola, soy anulador.\nAnulo el onclick inicial del elemento");
+}
+</script>
+</body>
+</html>

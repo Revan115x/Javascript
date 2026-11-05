@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style>
+div {
+	margin-left:40px;
+	margin-top:40px;
+	}
+</style>
+<script>
+function validar(){
+pal=prompt("La palabra mágica es...");
+if (pal=='Google')
+	return true;
+else 
+   return false;
+}
+
+</script>
+</head>
+<body>
+<div>
+<a href="http://www.google.com" onclick="return false"> No ir a Google</a> <br><br>
+<a href="http://www.google.com" onclick="return window.confirm('Seguro??')"> Confirmar si quieres ir a Google</a> <br><br>
+<a href="http://www.google.com" onclick="return validar()"> Tienes que decir la palabra mágica</a> 
+</div>
+</body>
+</html>

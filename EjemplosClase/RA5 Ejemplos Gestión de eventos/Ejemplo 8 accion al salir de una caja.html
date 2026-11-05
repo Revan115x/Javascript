@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script>
+var mensaje='';
+ 
+function validar(e){
+ 
+if (e.value <= 10){
+	alert ("Mal");
+ 	e.style.backgroundColor="#F5B7B1";
+	}
+else
+	e.style.backgroundColor="#E8DAEF ";
+}
+function digito (evento,e){
+if (evento.keyCode == 13){
+	 if (!isNaN(e.value))
+		validar(e);
+	 else 
+	    {
+		alert ("Fatal");
+		e.style.backgroundColor="#F5B7B1";
+		}
+	 }
+else{
+	let x = evento.key;
+	if (!/\d/.test(x))
+	  {
+		e.style.backgroundColor="#F5B7B1";
+		alert("error");
+		}
+	}
+}
+</script>
+</head>
+<body>
+<h2> Teclea números mayores que 10 </h2>
+uno <input type="number" id="caja1" onkeydown="if (event.keyCode==13) validar(this);"> 
+<span>Cuando acabes pulsa intro</span><br><br>
+dos <input type="number" id="caja2" onblur="validar(this)"> 
+<span>Cuando acabes vete con el tabulador</span><br><br>
+tres <input type="number" id="caja3" onchange="validar(this)"> 
+<span>Ahora da igual porque valido en el onchange</span><br><br>
+cuatro <input type="text" id="caja4" onkeydown="digito(event,this)">
+<span>Voy a controlar carácter a carácter</span><br><br>
+ 
+</body>
+</html>
