@@ -1,63 +1,34 @@
 # JAVASCRIPT – RA5: EVENTOS Y FORMULARIOS III
 
-## 1. ¿Qué son los eventos?
+## 1. CONCEPTOS BÁSICOS
 
-Son acciones que realiza el usuario en una página web y que JavaScript puede detectar para ejecutar una función.
+**¿Qué es un evento?**
 
-Ejemplos:
-- Hacer clic en un botón.
-- Mover el ratón.
-- Pulsar una tecla.
-- Cambiar el tamaño de la ventana.
-- Modificar un formulario.
+Es una acción que realiza el usuario en una página web y que JavaScript puede detectar para ejecutar una función.
 
-**Manejador de eventos (event handler):** función que se ejecuta cuando sucede un evento.
+Ejemplos: hacer clic, mover el ratón, pulsar una tecla, cambiar un campo o enviar un formulario.
+
+**Manejador de eventos (event handler):** función que se ejecuta cuando ocurre un evento. Se escribe con el prefijo `on` + nombre del evento.
 
 Ejemplo:
 ```html
-<input type="button" value="Pulsar" onclick="saludar()">
+<input type="text" onclick="alert('Has entrado en la caja');">
 ```
 
-Cuando hacemos clic, se ejecuta `saludar()`.
-
-## 2. Modelo básico de eventos
-
-Los eventos utilizan el prefijo `on` seguido del nombre del evento.
-
-| Evento | Manejador |
-|---|---|
-| click | onclick |
-| dblclick | ondblclick |
-| mouseover | onmouseover |
-| mouseout | onmouseout |
-| keydown | onkeydown |
-| keyup | onkeyup |
-| focus | onfocus |
-| blur | onblur |
-| change | onchange |
-| load | onload |
-| submit | onsubmit |
-
-Podemos ejecutar JavaScript directamente:
-
+También podemos llamar a una función:
 ```html
-<input onclick="alert('Hola')">
+<input type="text" onclick="contarClicks()">
 ```
 
-O llamar a una función:
+## 2. VARIABLES ESPECIALES: THIS Y EVENT
 
+- `this`: hace referencia al elemento HTML que ha provocado el evento.
+- `event`: objeto que contiene información sobre el evento.
+- `event.type`: indica el tipo de evento que ha ocurrido.
+
+Ejemplo con `this`:
 ```html
-<input onclick="saludar()">
-```
-
-## 3. Variables especiales: this y event
-
-**this:** hace referencia al elemento HTML que ha provocado el evento.
-
-```html
-<div onclick="cambiar(this)">
-    Pulsa aquí
-</div>
+<div onclick="cambiar(this)">Pulsa aquí</div>
 ```
 
 ```javascript
@@ -66,25 +37,19 @@ function cambiar(elemento) {
 }
 ```
 
-**event:** representa el evento que ha ocurrido y permite consultar información sobre él.
-
+Ejemplo con `event`:
 ```javascript
 function mostrar(evento) {
     alert(evento.type);
 }
 ```
 
-`type` indica el tipo de evento que se ha producido.
+## 3. MÉTODOS addEventListener() Y removeEventListener()
 
-## 4. addEventListener() y removeEventListener()
-
-| Método | Función |
-|---|---|
-| addEventListener() | Añade un manejador de eventos. |
-| removeEventListener() | Elimina un manejador de eventos. |
+- `addEventListener()`: permite asignar uno o varios manejadores de eventos a un elemento.
+- `removeEventListener()`: permite eliminar un manejador de eventos.
 
 Ejemplo:
-
 ```javascript
 function saludar() {
     alert("Hola");
@@ -93,193 +58,254 @@ function saludar() {
 document.getElementById("boton").addEventListener("click", saludar);
 ```
 
-Para eliminarlo:
-
+Eliminar el evento:
 ```javascript
 document.getElementById("boton").removeEventListener("click", saludar);
 ```
 
-Importante: para eliminarlo debemos indicar el mismo nombre de función que utilizamos al añadirlo.
+IMPORTANTE: para eliminarlo debemos utilizar la misma función que añadimos.
 
-## 5. Eventos del ratón
+## 4. EVENTOS DEL RATÓN
 
-| Evento | ¿Qué hace? |
+Son eventos que se producen cuando el usuario interactúa con los elementos utilizando el ratón.
+
+| Evento | Descripción y funcionamiento |
 |---|---|
-| onclick | Pulsar el botón izquierdo. |
-| ondblclick | Hacer doble clic. |
-| onmousedown | Pulsar un botón del ratón sin soltarlo. |
-| onmouseup | Soltar el botón del ratón. |
-| onmousemove | Mover el ratón dentro de un elemento. |
-| onmouseenter | El ratón entra en un elemento. |
-| onmouseleave | El ratón sale de un elemento. |
-| onmouseover | El ratón entra en un elemento o alguno de sus hijos. |
-| onmouseout | El ratón sale de un elemento o alguno de sus hijos. |
+| `onclick` | Se ejecuta al hacer clic con el botón izquierdo del ratón sobre un elemento. |
+| `ondblclick` | Se ejecuta al hacer doble clic. |
+| `onmousedown` | Se ejecuta al pulsar un botón del ratón, antes de soltarlo. |
+| `onmouseup` | Se ejecuta cuando soltamos un botón del ratón. |
+| `onmousemove` | Se ejecuta mientras movemos el puntero dentro de un elemento. |
+| `onmouseenter` | Se ejecuta cuando el puntero entra en un elemento. |
+| `onmouseleave` | Se ejecuta cuando el puntero sale de un elemento. |
+| `onmouseout` | Se ejecuta cuando el ratón sale de un elemento o de alguno de sus hijos. |
+| `onmouseover` | Se ejecuta cuando el ratón entra en un elemento o en alguno de sus hijos. |
 
-**Diferencia importante:**
-- mouseenter: detecta la entrada en el elemento.
-- mouseover: también puede producirse al entrar en sus elementos hijos.
-- mouseleave: detecta la salida del elemento.
-- mouseout: también puede producirse al pasar a uno de sus elementos hijos.
+**Diferencias importantes:**
+- `mousedown` = pulsar / `mouseup` = soltar.
+- `mouseenter` = entrar / `mouseleave` = salir.
+- `mouseover` y `mouseout` también detectan movimientos relacionados con elementos hijos.
+- `click` = clic / `dblclick` = doble clic.
 
-### Ejemplo: cambiar el fondo
+### Ejemplo: cambiar el fondo al pasar el ratón
 
 ```html
-<div
-    onmouseover="this.style.background='silver'"
-    onmouseout="this.style.background='blue'">
-    Pasa por encima
+<div style="width:150px; height:60px; background:#b0c4de"
+     onmouseover="this.style.background='silver'"
+     onmouseout="this.style.background='#b0c4de'">
+    Pasa por encima...
 </div>
 ```
 
-Al entrar el ratón cambia a gris y al salir vuelve a azul.
+- `onmouseover`: cambia el fondo a gris al entrar.
+- `onmouseout`: devuelve el fondo al color original al salir.
+- `this`: hace referencia al propio DIV.
 
-## 6. Uso especial de onclick y return false
+### Ejemplo: cambiar el borde
 
-`onclick` puede devolver `true` o `false` después de ejecutar una función.
+```javascript
+function resalta(elemento) {
+    switch(elemento.style.borderColor) {
+        case 'silver':
+            elemento.style.borderColor = 'black';
+            break;
+        case 'black':
+            elemento.style.borderColor = 'silver';
+            break;
+    }
+}
+```
 
-Si devuelve `false`, se cancela la acción predeterminada.
+```html
+<div style="border:thin solid silver"
+     onmouseover="resalta(this)"
+     onmouseout="resalta(this)">
+    Sección de contenidos...
+</div>
+```
 
-Ejemplo con un enlace:
+## 5. USO ESPECIAL DE onclick Y return false
 
+`onclick` puede recibir un valor `true` o `false` después de ejecutar una función.
+
+- `true`: permite continuar con la acción predeterminada.
+- `false`: cancela la acción predeterminada.
+
+Ejemplo:
 ```html
 <a href="https://google.com" onclick="return false">
     Ir a Google
 </a>
 ```
 
-No se abrirá Google.
+No abrirá Google porque se cancela la navegación.
 
-### Confirmar una acción con window.confirm()
+### window.confirm()
+
+Permite mostrar una pregunta de confirmación al usuario.
 
 ```html
 <a href="https://google.com"
-   onclick="return confirm('¿Estás seguro?')">
+   onclick="return window.confirm('¿Seguro?')">
     Ir a Google
 </a>
 ```
 
-- Aceptar: devuelve `true` y continúa.
-- Cancelar: devuelve `false` y no continúa.
+- Aceptar = `true` → continúa y abre Google.
+- Cancelar = `false` → cancela la navegación.
 
-También sirve para cancelar el envío de un formulario.
+También se puede utilizar para cancelar el envío de un formulario.
 
-## 7. Acceder a elementos HTML desde JavaScript
+## 6. ACCEDER A ELEMENTOS HTML DESDE JAVASCRIPT
 
-Primero obtenemos el elemento mediante su ID:
+Para acceder a un elemento mediante su ID utilizamos:
 
 ```javascript
-var e = document.getElementById("nombre");
+var e = document.getElementById("id");
 ```
 
 Después podemos consultar o modificar sus propiedades:
 
-| Propiedad | Utilidad |
+| Propiedad | ¿Qué hace? |
 |---|---|
-| value | Obtener o cambiar el valor de un input. |
-| innerHTML | Obtener o cambiar el contenido HTML de un elemento. |
-| style | Modificar los estilos CSS. |
+| `.value` | Obtiene o modifica el valor de un input. |
+| `.innerHTML` | Obtiene o modifica el contenido HTML de un elemento. |
+| `.style` | Permite consultar o modificar los estilos CSS. |
 
-Ejemplos:
-
+Ejemplo:
 ```javascript
 var e = document.getElementById("nombre");
 
 e.value = "Jose";
-
 e.innerHTML = "Hola";
-
 e.style.color = "red";
 ```
 
-### Modificar CSS desde JavaScript
+## 7. MODIFICAR CSS DESDE JAVASCRIPT
 
-En JavaScript, las propiedades CSS con guiones se escriben usando camelCase.
+Las propiedades CSS que llevan guiones se escriben en camelCase en JavaScript.
 
 | CSS | JavaScript |
 |---|---|
-| background-color | backgroundColor |
-| border-color | borderColor |
-| font-size | fontSize |
-| font-family | fontFamily |
-| font-weight | fontWeight |
-| margin-top | marginTop |
-| padding-left | paddingLeft |
-| text-decoration | textDecoration |
-| text-align | textAlign |
-| z-index | zIndex |
+| `background` | `background` |
+| `background-color` | `backgroundColor` |
+| `background-image` | `backgroundImage` |
+| `border-color` | `borderColor` |
+| `border-style` | `borderStyle` |
+| `font-family` | `fontFamily` |
+| `font-size` | `fontSize` |
+| `font-weight` | `fontWeight` |
+| `height` | `height` |
+| `margin-top` | `marginTop` |
+| `margin-left` | `marginLeft` |
+| `padding-left` | `paddingLeft` |
+| `position` | `position` |
+| `text-align` | `textAlign` |
+| `text-decoration` | `textDecoration` |
+| `text-transform` | `textTransform` |
+| `width` | `width` |
+| `z-index` | `zIndex` |
 
 Ejemplo:
-
 ```javascript
 elemento.style.backgroundColor = "red";
 elemento.style.fontSize = "20px";
 elemento.style.borderColor = "black";
 ```
 
-También podemos modificar:
-- `display`
-- `visibility`
-- `width`
-- `height`
-- `color`
-- `position`
+**visibility:**
+- `visible`: muestra el elemento.
+- `hidden`: oculta el elemento, pero mantiene su espacio.
 
-## 8. Eventos HTML de formularios y ventanas
+## 8. EVENTOS HTML DE FORMULARIOS Y VENTANAS
 
-| Evento | Manejador | ¿Cuándo ocurre? |
-|---|---|---|
-| blur | onblur | El elemento pierde el foco. |
-| change | onchange | Se modifica un valor y se pierde el foco. |
-| focus | onfocus | El elemento obtiene el foco. |
-| load | onload | La página o imagen termina de cargarse. |
-| reset | onreset | Se reinicia el formulario. |
-| resize | onresize | Cambia el tamaño de la ventana. |
-| select | onselect | Se selecciona texto. |
-| submit | onsubmit | Se envía el formulario. |
-| unload | onunload | Se abandona la página. |
+| Evento | Descripción y funcionamiento |
+|---|---|
+| `onblur` | Se ejecuta cuando un elemento pierde el foco. Por ejemplo, cuando salimos de una caja de texto. |
+| `onchange` | Se ejecuta cuando modificamos el valor de un campo y después pierde el foco. También funciona al seleccionar una opción de una lista. |
+| `onfocus` | Se ejecuta cuando un elemento obtiene el foco. Por ejemplo, cuando entramos en una caja de texto. |
+| `onload` | Se ejecuta cuando la página o una imagen se ha cargado completamente. |
+| `onreset` | Se ejecuta cuando intentamos reiniciar un formulario. |
+| `onresize` | Se ejecuta cuando modificamos el tamaño de la ventana del navegador. |
+| `onselect` | Se ejecuta cuando seleccionamos texto en un input o textarea. |
+| `onsubmit` | Se ejecuta cuando intentamos enviar un formulario. |
+| `onunload` | Se ejecuta cuando abandonamos una página. |
 
-### Diferencias importantes
+**Diferencias importantes:**
+- `focus` = entrar en un campo.
+- `blur` = salir de un campo.
+- `change` = cambiar un valor y perder el foco.
+- `load` = página cargada.
+- `submit` = enviar formulario.
+- `reset` = reiniciar formulario.
 
-**focus y blur**
-- focus: entramos en un campo.
-- blur: salimos de un campo.
-
-**change**
-Se produce cuando cambiamos el valor de un campo y después pierde el foco.
-
-**load**
-Se utiliza para ejecutar código cuando la página se ha cargado completamente.
+### Ejemplo: onload
 
 ```html
 <body onload="iniciar()">
 ```
 
-**submit**
-Se ejecuta cuando se envía un formulario.
+Ejecuta la función `iniciar()` cuando la página termina de cargarse.
+
+### Ejemplo: onchange
+
+```html
+<input type="text" onchange="alert('Has cambiado el texto')">
+```
+
+Muestra un mensaje cuando modificamos el texto y salimos del campo.
+
+### Ejemplo: onsubmit
 
 ```html
 <form onsubmit="return validar()">
+    <input type="text">
+    <input type="submit" value="Enviar">
+</form>
 ```
 
-**reset**
-Permite controlar el reinicio del formulario. Si devuelve `false`, no se reinicia.
+Ejecuta `validar()` antes de enviar el formulario. Si devuelve `false`, cancela el envío.
 
-## 9. Eventos del teclado
+### Ejemplo: onreset
 
-| Evento | Manejador | ¿Qué hace? |
-|---|---|---|
-| keydown | onkeydown | Pulsamos una tecla sin soltarla. |
-| keypress | onkeypress | Pulsamos una tecla alfanumérica. Está en desuso. |
-| keyup | onkeyup | Soltamos una tecla. |
+```html
+<form onreset="return confirm('¿Quieres borrar los datos?')">
+    <input type="text">
+    <input type="reset" value="Borrar">
+</form>
+```
+
+Pregunta si queremos reiniciar el formulario. Si cancelamos, no se borran los datos.
+
+## 9. EVENTOS DEL TECLADO
+
+Son eventos que detectan las acciones que realizamos utilizando el teclado.
+
+| Evento | Descripción y funcionamiento |
+|---|---|
+| `onkeydown` | Se ejecuta cuando pulsamos una tecla, mientras la mantenemos pulsada. |
+| `onkeypress` | Se ejecuta al pulsar una tecla que representa un carácter alfanumérico. Está en desuso. |
+| `onkeyup` | Se ejecuta cuando soltamos una tecla. Es útil para comprobar campos después de escribir. |
+
+**Diferencias importantes:**
+- `keydown` = pulsar una tecla.
+- `keypress` = pulsar un carácter (en desuso).
+- `keyup` = soltar una tecla.
 
 **Propiedades del objeto event:**
 
-| Propiedad | Utilidad |
+| Propiedad | ¿Qué devuelve? |
 |---|---|
-| keyCode | Código numérico de la tecla. |
-| key | Valor o nombre de la tecla. |
+| `event.key` | El nombre o carácter de la tecla pulsada. |
+| `event.keyCode` | El código numérico de la tecla. |
 
-Ejemplo:
+IMPORTANTE: INTRO = código `13`.
+
+### Ejemplo: detectar INTRO
+
+```html
+<input type="text" onkeydown="comprobar(event)">
+```
 
 ```javascript
 function comprobar(evento) {
@@ -289,9 +315,7 @@ function comprobar(evento) {
 }
 ```
 
-El código `13` corresponde a la tecla INTRO.
-
-### Detectar INTRO o salir de un input
+### Ejemplo: ejecutar una acción al salir del campo o pulsar INTRO
 
 ```html
 <input type="text"
@@ -299,80 +323,79 @@ El código `13` corresponde a la tecla INTRO.
        onkeypress="if(event.keyCode==13) realizarAccion()">
 ```
 
-- onblur: ejecuta la función cuando salimos del campo.
-- onkeypress: ejecuta la función cuando pulsamos INTRO.
+- `onblur`: ejecuta la función cuando salimos del campo.
+- `onkeypress`: ejecuta la función al pulsar INTRO.
 
-## 10. Coordenadas del ratón
+## 10. COORDENADAS DEL RATÓN
 
-JavaScript permite conocer la posición del ratón mediante las propiedades del objeto event.
+Permiten conocer la posición del puntero del ratón cuando ocurre un evento.
 
-| Propiedad | Coordenadas respecto a... |
+El origen de las coordenadas está siempre en la esquina superior izquierda.
+
+| Propiedad | Descripción |
 |---|---|
-| clientX | Ventana del navegador (horizontal). |
-| clientY | Ventana del navegador (vertical). |
-| screenX | Pantalla del ordenador (horizontal). |
-| screenY | Pantalla del ordenador (vertical). |
-| pageX | Página HTML (horizontal). |
-| pageY | Página HTML (vertical). |
+| `clientX` | Posición horizontal respecto a la ventana del navegador. |
+| `clientY` | Posición vertical respecto a la ventana del navegador. |
+| `screenX` | Posición horizontal respecto a la pantalla del ordenador. |
+| `screenY` | Posición vertical respecto a la pantalla del ordenador. |
+| `pageX` | Posición horizontal respecto a toda la página HTML, incluyendo el desplazamiento. |
+| `pageY` | Posición vertical respecto a toda la página HTML, incluyendo el desplazamiento. |
 
-**Importante:** el origen de las coordenadas está en la esquina superior izquierda.
+**Diferencias:**
+- `client` = ventana del navegador.
+- `screen` = pantalla completa.
+- `page` = página HTML completa, incluyendo el scroll.
 
-### Diferencias
-
-- clientX / clientY: posición dentro de la ventana del navegador.
-- screenX / screenY: posición respecto a toda la pantalla.
-- pageX / pageY: posición respecto a toda la página, incluyendo el desplazamiento (scroll).
-
-### Ejemplo
+### Ejemplo: mostrar coordenadas
 
 ```javascript
 function coordenadas(evento) {
 
-    alert("Navegador: " + evento.clientX + "," + evento.clientY);
+    alert("Navegador: " +
+        evento.clientX + "," + evento.clientY);
 
-    alert("Pantalla: " + evento.screenX + "," + evento.screenY);
+    alert("Pantalla: " +
+        evento.screenX + "," + evento.screenY);
 
-    alert("Página: " + evento.pageX + "," + evento.pageY);
+    alert("Página: " +
+        evento.pageX + "," + evento.pageY);
 }
 ```
-
-Se puede asociar al clic de la página:
 
 ```html
 <body onclick="coordenadas(event)">
 ```
 
----
+Al hacer clic en cualquier parte del BODY, muestra las coordenadas del ratón.
 
-# RESUMEN RÁPIDO PARA EL EXAMEN
+## 11. RESUMEN RÁPIDO PARA EL EXAMEN
 
-| Si te preguntan... | Recuerda... |
+| Concepto | Recuerda |
 |---|---|
-| ¿Qué es un evento? | Acción del usuario detectada por JavaScript. |
-| ¿Qué es un manejador? | Función que responde a un evento. |
-| ¿Qué hace this? | Hace referencia al elemento que provoca el evento. |
-| ¿Qué hace event? | Contiene información del evento. |
-| ¿Qué hace addEventListener()? | Añade manejadores. |
-| ¿Qué hace removeEventListener()? | Elimina manejadores. |
-| ¿Qué hace onclick? | Detecta un clic. |
-| ¿Qué hace onmouseover? | Detecta la entrada del ratón. |
-| ¿Qué hace onmouseout? | Detecta la salida del ratón. |
-| ¿Qué hace onfocus? | Detecta que un elemento obtiene el foco. |
-| ¿Qué hace onblur? | Detecta que un elemento pierde el foco. |
-| ¿Qué hace onchange? | Detecta un cambio cuando se pierde el foco. |
-| ¿Qué hace onload? | Detecta que la página se ha cargado. |
-| ¿Qué hace onsubmit? | Detecta el envío del formulario. |
-| ¿Qué hace keydown? | Detecta la pulsación de una tecla. |
-| ¿Qué hace keyup? | Detecta que soltamos una tecla. |
-| ¿Qué hace return false? | Cancela la acción predeterminada. |
-| ¿Qué hace value? | Accede al valor de un input. |
-| ¿Qué hace innerHTML? | Accede al contenido HTML. |
-| ¿Qué hace style? | Modifica los estilos CSS. |
-
-## LOS 5 CONCEPTOS QUE NO DEBES CONFUNDIR
-
-1. `this` = elemento HTML que provoca el evento.
-2. `event` = información del evento.
-3. `focus` = entrar en un campo.
-4. `blur` = salir de un campo.
-5. `return false` = cancelar la acción predeterminada.
+| Evento | Acción del usuario. |
+| Handler | Función que responde al evento. |
+| `this` | Elemento HTML que provoca el evento. |
+| `event` | Información del evento. |
+| `event.type` | Tipo de evento producido. |
+| `addEventListener()` | Añade eventos. |
+| `removeEventListener()` | Elimina eventos. |
+| `onclick` | Hacer clic. |
+| `onmousedown` | Pulsar ratón. |
+| `onmouseup` | Soltar ratón. |
+| `onmouseenter` | Entrar con el ratón. |
+| `onmouseleave` | Salir con el ratón. |
+| `onfocus` | Obtener el foco. |
+| `onblur` | Perder el foco. |
+| `onchange` | Cambiar el valor. |
+| `onload` | Cargar página. |
+| `onsubmit` | Enviar formulario. |
+| `onreset` | Reiniciar formulario. |
+| `onkeydown` | Pulsar tecla. |
+| `onkeyup` | Soltar tecla. |
+| `return false` | Cancelar acción predeterminada. |
+| `value` | Valor de un input. |
+| `innerHTML` | Contenido HTML. |
+| `style` | Estilos CSS. |
+| `clientX/clientY` | Coordenadas de la ventana. |
+| `screenX/screenY` | Coordenadas de la pantalla. |
+| `pageX/pageY` | Coordenadas de la página. |
