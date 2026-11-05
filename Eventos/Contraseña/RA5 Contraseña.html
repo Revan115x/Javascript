@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Contraseña</title>
+    <script src="contraseña.js"></script>
+    <style>
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .indicador {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            margin-top: 15px;
+            border: 2px solid #ccc;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .valid {
+            background-color: rgb(195, 214, 195);
+        }
+
+        .invalid {
+            background-color: rgb(242, 183, 183);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Crear Contraseña</h2>
+    <input type="password" id="password" placeholder="Introduce tu contraseña">
+    <button id="button">Enviar</button>
+    <p id="message">La contraseña debe tener al menos 8 caracteres, incluyendo dígitos, letras minúsculas, mayúsculas y
+        caracteres especiales.</p>
+
+    <div>
+        <span id="digit" class="indicador">Dígito </span>
+        <span id="lower" class="indicador">Minúscula </span>
+        <span id="upper" class="indicador">Mayúscula </span>
+        <span id="special" class="indicador">Especial </span>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
