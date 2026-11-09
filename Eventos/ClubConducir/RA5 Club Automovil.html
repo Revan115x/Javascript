@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+        span {
+            display:none;
+        }
+		legend {color: #CC0033;
+                font-weight: 600;
+		}
+        
+        #precio {color: #222;
+                font-weight: 600;
+                line-height: 1.3;
+                }
+        }
+    </style>
+ <script>
+	function validar(){
+	
+     }
+	 function cambiarColor (e){ 
+	 
+	 }
+	 function validarNomApel (e){ 
+	 
+	 }
+	 function validarFecha (e){ 
+	 
+	 }
+	 function calcularEdad (e){ 
+	
+	}
+	 function validarDNI (e){ 
+	
+	}
+	 function calcularRenovar(e){ 
+	
+	}
+     </script>
+    </head>
+ <body>
+<h1>CLUB DEL AUTOMOVIL</h1>
+<h3>ALTA NUEVO SOCIO</h3>
+<form>
+<div>
+    <fieldset>
+	<legend>DATOS SOCIO</legend>
+
+	Nombre &nbsp;&nbsp;<input type="text" id="nom"size=30
+     	onfocus=" "
+		onchange=" ">
+	<br><br>Apellidos <input type="text" id="ape"size=30
+		onfocus=" " 
+		onchange=" ">
+	<br><br>Fecha Nacimiento  <input type="date" id=fecnac size=13  
+		onfocus=" "
+		onchange=" "
+		>&nbsp;&nbsp; Edad <input type="text" size=4 id="edad" readonly>
+		 </fieldset>
+	 <br>
+	<fieldset>
+    <legend>DATOS CARNET CONDUCIR </legend>
+    Num Carnet <input type="text" id="carnet" size="15"
+		onfocus=" "
+		onchange=" "> &nbsp;&nbsp;
+	Desde   <input type="date" size=13 id="desde"  
+		onfocus=" "
+		onchange=" "> &nbsp;&nbsp;  
+    Renovar   <input type="text"  size=13 id="renovar" readonly>  
+	<input  type="button" value="CONTRATAR" onclick="validar()">  <br><br> 
+ </div>
+</form> 
+<br>
+<div id="todoOK"></div>
+</body>
+</html>
