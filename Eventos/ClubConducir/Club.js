@@ -1,21 +1,26 @@
-		function validar() {
+function validar() {
 
-		}
-		function cambiarColor(e) {
+}
+function cambiarColor(e) {
+	e.style.background =  "#dd8e12";
+}
 
-		}
-		function validarNomApel(e) {
+/* b. Nombre y Apellidos se validan con la misma función ( tiene que empezar por dos
+caracteres alfabéticos y lo demás serán letras o espacios en blanco) */
 
-		}
-		function validarFecha(e) {
+function validarNomApel(e) {
+	
 
-		}
-		function calcularEdad(e) {
+}
+function validarFecha(e) {
 
-		}
-		function validarDNI(e) {
+}
+function calcularEdad(e) {
 
-		}
-		function calcularRenovar(e) {
+}
+function validarDNI(e) {
 
-		}
+}
+function calcularRenovar(e) {
+
+}
