@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benito Zen - Nuestro Spa</title>
+
+    <link rel="stylesheet" href="estilos.css">
+     <script src="script.js" defer></script>
+
+    <style>
+        /* Galería de imágenes */
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .galeria img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .galeria img:hover {
+            transform: scale(1.03);
+            transition: 0.3s;
+        }
+
+        #datosCliente {
+            background-color: #e0ebe3;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        #datosCliente p {
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 600px) {
+            .galeria {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>BENITO ZEN</h1>
+        <p>Un espacio para desconectar y cuidarte</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Bienvenido a nuestro SPA</h2>
+            <div id="datosCliente">
+                <h3>Tus datos</h3>
+                <div id="resultado"></div>
+                <button onclick="olvidarDatos()">
+                    Olvidar mis datos
+                </button>
+            </div>
+        </section>
+        <section>
+            <h2>Descubre nuestras instalaciones</h2>
+            <p>
+                Disfruta de un espacio diseñado para tu bienestar
+                y relajación.
+            </p>
+            <div class="galeria">
+                <img src="imagenes/piscina.jpg" alt="Piscina del spa">
+                <img src="imagenes/masaje.jpg" alt="Sala de masajes">
+                <img src="imagenes/sauna.jpg" alt="Sauna">
+                <img src="imagenes/relax.jpg" alt="Zona de relajación">
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <p>BENITO ZEN - Tu momento de bienestar</p>
+    </footer>
+    <script>
+
+    </script>
+</body>
+
+</html>

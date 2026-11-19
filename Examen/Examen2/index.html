@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA BENITO ZEN</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div id="div1">
+        <header>
+            <h1>SPA BENITO ZEN</h1>
+            <p>Un espacio para desconectar y cuidarte</p>
+            <p>Selecciona tus servicios y descubre nuestros precios.</p>
+            <!-- IMAGEN QUE CAMBIA A LOS HORARIOS -->
+            <div id="horarios" onmouseover="horarioSi(this)" onmouseout="horarioNo(this)">
+                <img id="imagenSpa" src="imagenes/spa.jpg" alt="Instalaciones del SPA BENITO ZEN">
+                <div id="textoHorarios">
+                    <h3>NUESTROS HORARIOS</h3>
+                    <p>Lunes a viernes</p>
+                    <p>De 10:00 a 14:00</p>
+                    <p>De 16:00 a 21:00</p>
+                    <p>¡Te esperamos!</p>
+                </div>
+            </div>
+        </header>
+        <!-- SELECCIÓN DE SERVICIOS -->
+        <h2>Nuestros servicios</h2>
+        <div class="servicios">
+            <div class="servicio">
+                <label>
+                    <input type="radio" name="a">
+                    Circuito Termal <strong>40 €</strong>
+                </label>
+                <p>Relájate en nuestras instalaciones termales.</p>
+            </div>
+            <div class="servicio">
+                <label>
+                    <input type="radio" name="a">
+                    Estética
+                </label>
+                <select id="est">
+                    <option value="50">Limpieza de cutis - 50 €</option>
+                    <option value="35">Cera Piernas Enteras - 35 €</option>
+                    <option value="50">Cera Total - 50 €</option>
+                </select>
+            </div>
+            <div class="servicio">
+                <label>
+                    <input type="radio" name="a">
+                    Masajes
+                </label>
+                <select id="mas">
+                    <option value="60">Tailandés - 60 €</option>
+                    <option value="55">Algas - 55 €</option>
+                    <option value="55">Relajante - 55 €</option>
+                    <option value="55">Barros - 55 €</option>
+                </select>
+            </div>
+        </div>
+        <!-- DATOS PERSONALES -->
+        <h2>Datos personales</h2>
+        <div class="datos">
+            <div class="campo">
+                <label for="sexo">Sexo</label>
+                <select id="genero">
+                    <option value="0">Seleccione</option>
+                    <option value="1">Hombre</option>
+                    <option value="2">Mujer</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label for="edad">Edad</label>
+                <select id="edad">
+                    <option value="0">Seleccione</option>
+                    <option value="25">Hasta 25 años</option>
+                    <option value="30">De 26 a 60 años</option>
+                    <option value="60">Más de 60 años</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label for="numSocio">Número de socio</label>
+                <input type="text" id="numSocio" placeholder="Introduce tu número de socio" onchange="comprobar2()">
+            </div>
+            <div class="campo">
+                <label for="codigoRegalo">Código Regalo</label>
+                <input type="text" id="codigoRegalo" placeholder="Introduce tu código" onchange="comprobar3()">
+            </div>
+        </div>
+        <button type="button" onclick="comprobar()">
+            Mostrar precio
+        </button>
+        <!-- DESCUENTOS Y PRECIOS -->
+        <div id="desc">
+            <strong>DESCUENTOS Y PRECIOS</strong>
+            <p>Selecciona un servicio para consultar su precio y los descuentos disponibles.</p>
+        </div>
+        <!-- FECHA DE VISITA -->
+        <div id="divFecha">
+            <h2>Reserva tu visita</h2>
+            <label for="fecha">Elige un día para visitarnos:</label>
+            <input id="fecha" type="date">
+
+            <br>
+            <button type="button" onclick="comprobarFecha()" >Mas Info</button>
+        </div>
+        <!-- MENSAJE FINAL -->
+        <h3 id="mensaje"></h3>
+        <p class="nota">
+            SPA BENITO ZEN · Tu bienestar es nuestra prioridad
+        </p>
+    </div>
+</body>
+
+</html>
