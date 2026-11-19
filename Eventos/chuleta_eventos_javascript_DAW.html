@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chuleta de eventos JavaScript - DAW</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        font-family: Arial, sans-serif; line-height: 1.55; margin: 0;
+        background: #f3f4f6; color: #222;
+    }
+    header { background: #26354a; color: white; padding: 28px 7%; }
+    header h1 { margin: 0 0 8px; }
+    main { max-width: 1050px; margin: 25px auto; padding: 0 18px 50px; }
+    section {
+        background: white; padding: 22px; margin: 18px 0;
+        border-radius: 10px; box-shadow: 0 2px 8px #0000000c;
+    }
+    h2 { color: #26354a; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; }
+    h3 { margin-bottom: 6px; color: #374151; }
+    p { margin: 8px 0; }
+    code { background: #eef2f7; padding: 2px 5px; border-radius: 4px; }
+    pre {
+        background: #17202d; color: #edf2f7; padding: 15px;
+        border-radius: 8px; overflow-x: auto; white-space: pre-wrap;
+    }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    .nota { background: #fff7df; border-left: 4px solid #e4ad32; padding: 10px 13px; }
+    .resultado { background: #eaf7ee; border-left: 4px solid #3b9b5c; padding: 10px 13px; }
+    .demo { border: 1px dashed #aab3c0; border-radius: 8px; padding: 14px; margin-top: 10px; }
+    button, input, select {
+        padding: 8px 10px; margin: 4px; font-size: 15px;
+    }
+    button { cursor: pointer; }
+    .valido { color: green; font-weight: bold; }
+    .invalido { color: crimson; font-weight: bold; }
+    .caja { display: inline-block; background: #e8edf5; padding: 20px; margin: 5px; }
+    .resaltado { background: #ffed9e; }
+    .pequeno { color: #555; font-size: .94em; }
+    nav a { color: #dbeafe; margin-right: 12px; }
+</style>
+</head>
+<body>
+<header>
+    <h1>Chuleta de eventos JavaScript</h1>
+    <p>Ejemplos típicos de examen · DAW · Desde cero y con la lógica explicada</p>
+    <nav>
+        <a href="#base">Base</a><a href="#click">Click</a><a href="#input">Input</a>
+        <a href="#teclado">Teclado</a><a href="#raton">Ratón</a><a href="#formularios">Formularios</a>
+        <a href="#logica">Lógica</a>
+    </nav>
+</header>
+<main>
+
+<section id="base">
+<h2>1. La estructura que debes reconocer</h2>
+<p>Un evento es algo que hace el usuario: pulsar un botón, escribir, mover el ratón, cambiar una opción, etc.</p>
+<pre><code>// HTML
+&lt;button id="miBoton"&gt;Pulsa&lt;/button&gt;
+
+// JavaScript
+let boton = document.getElementById("miBoton");
+
+boton.addEventListener("click", function() {
+    alert("Has pulsado el botón");
+});</code></pre>
+<p><strong>La lógica:</strong></p>
+<ol>
+    <li>Selecciono el elemento con <code>getElementById()</code>.</li>
+    <li>Le añado un evento con <code>addEventListener()</code>.</li>
+    <li>Dentro de la función escribo lo que debe ocurrir.</li>
+</ol>
+<div class="nota"><strong>Importante:</strong> si el JavaScript está en un archivo aparte, carga el script con <code>defer</code> o coloca el script al final del <code>body</code>, para que el HTML exista cuando lo busques.</div>
+<h3>Dos formas de asociar eventos</h3>
+<pre><code>// Forma recomendada: addEventListener
+boton.addEventListener("click", function() {
+    alert("Hola");
+});
+
+// Forma directa: propiedad del evento
+boton.onclick = function() {
+    alert("Hola");
+};</code></pre>
+<p>En los ejercicios, usa preferentemente <code>addEventListener</code>. Permite asociar más de una función al mismo evento.</p>
+</section>
+
+<section id="click">
+<h2>2. click: hacer algo al pulsar un botón</h2>
+<h3>Ejemplo A. Mostrar un mensaje</h3>
+<pre><code>let boton = document.getElementById("saludar");
+
+boton.addEventListener("click", function() {
+    alert("¡Hola!");
+});</code></pre>
+<div class="demo">
+    <button id="saludar">Saludar</button>
+</div>
+<h3>Ejemplo B. Cambiar el contenido de una página</h3>
+<pre><code>let boton = document.getElementById("cambiar");
+let texto = document.getElementById("mensaje");
+
+boton.addEventListener("click", function() {
+    texto.innerHTML = "Texto cambiado";
+});</code></pre>
+<div class="demo">
+    <p id="mensaje">Este es el texto original.</p>
+    <button id="cambiar">Cambiar texto</button>
+</div>
+<h3>Ejemplo C. Mostrar u ocultar un elemento</h3>
+<pre><code>let boton = document.getElementById("ocultar");
+let texto = document.getElementById("secreto");
+
+boton.addEventListener("click", function() {
+    if (texto.style.display == "none") {
+        texto.style.display = "block";
+    } else {
+        texto.style.display = "none";
+    }
+});</code></pre>
+<div class="demo">
+    <p id="secreto">Ahora me puedes ocultar o volver a mostrar.</p>
+    <button id="ocultar">Mostrar / ocultar</button>
+</div>
+</section>
+
+<section id="input">
+<h2>3. input: reaccionar mientras escribes</h2>
+<p>Se ejecuta cada vez que cambia el contenido de un campo de texto. Es muy útil para validar contraseñas o mostrar lo que se está escribiendo.</p>
+<h3>Ejemplo A. Mostrar en pantalla lo escrito</h3>
+<pre><code>let cajaTexto = document.getElementById("nombre");
+let resultado = document.getElementById("resultadoNombre");
+
+cajaTexto.addEventListener("input", function() {
+    resultado.innerHTML = cajaTexto.value;
+});</code></pre>
+<div class="demo">
+    <label>Escribe tu nombre:</label>
+    <input id="nombre" type="text" placeholder="Tu nombre">
+    <p>Estás escribiendo: <strong id="resultadoNombre"></strong></p>
+</div>
+<h3>Ejemplo B. Comprobar si un campo está vacío</h3>
+<pre><code>let campo = document.getElementById("usuario");
+let aviso = document.getElementById("avisoUsuario");
+
+campo.addEventListener("input", function() {
+    if (campo.value.trim() == "") {
+        aviso.innerHTML = "El campo está vacío";
+    } else {
+        aviso.innerHTML = "Campo correcto";
+    }
+});</code></pre>
+<div class="demo">
+    <input id="usuario" type="text" placeholder="Escribe algo">
+    <p id="avisoUsuario">Escribe para comprobarlo.</p>
+</div>
+<div class="nota"><strong>Ojo con <code>value</code> y <code>innerHTML</code>:</strong> <code>value</code> obtiene lo que hay escrito en un input. <code>innerHTML</code> cambia o lee el contenido de un elemento como un <code>p</code> o un <code>span</code>.</div>
+<h3>Ejemplo C. Validar una contraseña con clases</h3>
+<pre><code>let password = document.getElementById("password");
+let indicador = document.getElementById("indicador");
+
+password.addEventListener("input", function() {
+    if (password.value.trim().length >= 8) {
+        indicador.innerHTML = "Contraseña válida";
+        indicador.className = "valido";
+    } else {
+        indicador.innerHTML = "Mínimo 8 caracteres";
+        indicador.className = "invalido";
+    }
+});</code></pre>
+<div class="demo">
+    <input id="password" type="password" placeholder="Mínimo 8 caracteres">
+    <p id="indicador" class="invalido">Mínimo 8 caracteres</p>
+</div>
+<p class="pequeno"><code>trim()</code> quita espacios del principio y del final. <code>length</code> indica la cantidad de caracteres. <code>className</code> cambia la clase CSS del elemento.</p>
+</section>
+
+<section id="teclado">
+<h2>4. Eventos de teclado</h2>
+<p>Se usan cuando el usuario pulsa o suelta una tecla. Para saber qué tecla ha pulsado, se utiliza <code>event.key</code>.</p>
+<h3>Ejemplo A. Detectar una tecla</h3>
+<pre><code>document.addEventListener("keydown", function(event) {
+    if (event.key == "Enter") {
+        alert("Has pulsado Enter");
+    }
+});</code></pre>
+<div class="demo">
+    <input id="tecla" type="text" placeholder="Pulsa Enter aquí">
+    <p id="teclaResultado">Prueba a pulsar Enter dentro del campo.</p>
+</div>
+<h3>Ejemplo B. Contar caracteres al escribir</h3>
+<pre><code>let texto = document.getElementById("textoContar");
+let contador = document.getElementById("contador");
+
+texto.addEventListener("input", function() {
+    contador.innerHTML = texto.value.length;
+});</code></pre>
+<div class="demo">
+    <input id="textoContar" type="text" placeholder="Escribe una frase">
+    <p>Caracteres: <strong id="contador">0</strong></p>
+</div>
+<h3>Teclas que pueden pedirte</h3>
+<ul>
+    <li><code>event.key == "Enter"</code>: tecla Intro.</li>
+    <li><code>event.key == "Backspace"</code>: retroceso / borrar hacia atrás.</li>
+    <li><code>event.key == " "</code>: barra espaciadora.</li>
+    <li><code>event.key == "ArrowLeft"</code>: flecha izquierda.</li>
+    <li><code>event.key == "a"</code>: letra a (la comparación distingue mayúsculas/minúsculas).</li>
+</ul>
+<div class="nota"><strong>No confundas:</strong> <code>keydown</code> ocurre al pulsar la tecla; <code>keyup</code> al soltarla; <code>input</code> cuando cambia el valor del campo. Para detectar qué se ha escrito en un input, normalmente es más sencillo usar <code>input</code>.</div>
+</section>
+
+<section id="raton">
+<h2>5. Eventos del ratón</h2>
+<h3>Ejemplo A. mouseover y mouseout</h3>
+<pre><code>let caja = document.getElementById("caja");
+
+caja.addEventListener("mouseover", function() {
+    caja.innerHTML = "El ratón está encima";
+});
+
+caja.addEventListener("mouseout", function() {
+    caja.innerHTML = "El ratón ha salido";
+});</code></pre>
+<div class="demo">
+    <div id="caja" class="caja">Pasa el ratón por aquí</div>
+</div>
+<h3>Ejemplo B. Cambiar el color al pasar el ratón</h3>
+<pre><code>let zona = document.getElementById("zona");
+
+zona.addEventListener("mouseover", function() {
+    zona.style.backgroundColor = "yellow";
+});
+
+zona.addEventListener("mouseout", function() {
+    zona.style.backgroundColor = "lightblue";
+});</code></pre>
+<div class="demo">
+    <div id="zona" class="caja">Pasa el ratón para cambiar el color</div>
+</div>
+<h3>Ejemplo C. Doble clic</h3>
+<pre><code>let doble = document.getElementById("doble");
+
+doble.addEventListener("dblclick", function() {
+    doble.innerHTML = "¡Doble clic detectado!";
+});</code></pre>
+<div class="demo">
+    <button id="doble">Haz doble clic</button>
+</div>
+</section>
+
+<section id="formularios">
+<h2>6. change, focus, blur y submit</h2>
+<h3>Ejemplo A. change: detectar un cambio en un select</h3>
+<pre><code>let lista = document.getElementById("colores");
+let resultadoColor = document.getElementById("resultadoColor");
+
+lista.addEventListener("change", function() {
+    resultadoColor.innerHTML = "Has elegido: " + lista.value;
+});</code></pre>
+<div class="demo">
+    <select id="colores">
+        <option value="">Elige un color</option>
+        <option value="Rojo">Rojo</option>
+        <option value="Azul">Azul</option>
+        <option value="Verde">Verde</option>
+    </select>
+    <p id="resultadoColor">Todavía no has elegido.</p>
+</div>
+<h3>Ejemplo B. focus y blur</h3>
+<pre><code>let campoFocus = document.getElementById("campoFocus");
+let ayuda = document.getElementById("ayuda");
+
+campoFocus.addEventListener("focus", function() {
+    ayuda.innerHTML = "Escribe tu correo";
+});
+
+campoFocus.addEventListener("blur", function() {
+    ayuda.innerHTML = "Has salido del campo";
+});</code></pre>
+<div class="demo">
+    <input id="campoFocus" type="text" placeholder="Haz clic aquí">
+    <p id="ayuda">El mensaje cambiará al entrar o salir del campo.</p>
+</div>
+<h3>Ejemplo C. submit: comprobar un formulario</h3>
+<pre><code>let formulario = document.getElementById("formulario");
+let nombreForm = document.getElementById("nombreForm");
+
+formulario.addEventListener("submit", function(event) {
+    if (nombreForm.value.trim() == "") {
+        event.preventDefault(); // Evita que se envíe el formulario
+        alert("Debes escribir tu nombre");
+    }
+});</code></pre>
+<div class="demo">
+    <form id="formulario">
+        <input id="nombreForm" type="text" placeholder="Nombre">
+        <button type="submit">Enviar</button>
+    </form>
+    <p class="pequeno">Prueba a enviar vacío y después escribe un nombre. Este ejemplo evita el envío real para que puedas probarlo en esta página.</p>
+</div>
+<div class="nota"><strong>Recuerda:</strong> <code>event.preventDefault()</code> cancela el comportamiento predeterminado. En un formulario evita el envío; en un enlace puede evitar la navegación.</div>
+</section>
+
+<section id="logica">
+<h2>7. Patrones de lógica que se repiten en los exámenes</h2>
+<h3>A. Si el usuario pulsa un botón, comprobar una condición</h3>
+<pre><code>boton.addEventListener("click", function() {
+    if (condicion) {
+        // Lo que ocurre si se cumple
+    } else {
+        // Lo que ocurre si no se cumple
+    }
+});</code></pre>
+<h3>B. Si el usuario escribe, leer el valor del input</h3>
+<pre><code>campo.addEventListener("input", function() {
+    let texto = campo.value;
+
+    if (texto == "") {
+        resultado.innerHTML = "No has escrito nada";
+    } else {
+        resultado.innerHTML = texto;
+    }
+});</code></pre>
+<h3>C. Cambiar estilos desde JavaScript</h3>
+<pre><code>elemento.style.color = "red";
+elemento.style.backgroundColor = "yellow";
+elemento.style.display = "none";  // Ocultar
+elemento.style.display = "block"; // Mostrar</code></pre>
+<h3>D. Trabajar con clases CSS</h3>
+<pre><code>elemento.className = "valido";
+elemento.className = "invalido";</code></pre>
+<h3>E. Confirmar antes de realizar una acción</h3>
+<pre><code>boton.addEventListener("click", function() {
+    let respuesta = confirm("¿Seguro que quieres continuar?");
+
+    if (respuesta == true) {
+        alert("Has aceptado");
+    } else {
+        alert("Has cancelado");
+    }
+});</code></pre>
+<div class="demo">
+    <button id="confirmar">Probar confirm()</button>
+    <p id="respuestaConfirm"></p>
+</div>
+<h3>F. Recoger el valor de varios controles</h3>
+<pre><code>// Input de texto
+let nombre = document.getElementById("nombre").value;
+
+// Select
+let opcion = document.getElementById("colores").value;
+
+// Radio: buscar el radio marcado
+let elegido = document.querySelector('input[name="alineacion"]:checked');
+
+if (elegido != null) {
+    let valor = elegido.value;
+}</code></pre>
+<div class="nota"><strong>Atención:</strong> en los radio buttons, <code>querySelector(...:checked)</code> obtiene el que está seleccionado. Comprueba que no sea <code>null</code> antes de leer <code>.value</code>.</div>
+</section>
+
+<section>
+<h2>8. Tabla rápida de eventos</h2>
+<table>
+<thead><tr><th>Evento</th><th>¿Cuándo se ejecuta?</th><th>Ejemplo típico</th></tr></thead>
+<tbody>
+<tr><td><code>click</code></td><td>Al hacer clic</td><td>Botón mostrar / ocultar</td></tr>
+<tr><td><code>dblclick</code></td><td>Al hacer doble clic</td><td>Cambiar un texto</td></tr>
+<tr><td><code>input</code></td><td>Al cambiar lo escrito</td><td>Validar contraseña</td></tr>
+<tr><td><code>change</code></td><td>Al confirmar un cambio</td><td>Elegir una opción</td></tr>
+<tr><td><code>keydown</code></td><td>Al pulsar una tecla</td><td>Detectar Enter</td></tr>
+<tr><td><code>keyup</code></td><td>Al soltar una tecla</td><td>Detectar que terminó la pulsación</td></tr>
+<tr><td><code>mouseover</code></td><td>Al entrar con el ratón</td><td>Resaltar una imagen</td></tr>
+<tr><td><code>mouseout</code></td><td>Al salir con el ratón</td><td>Quitar el resaltado</td></tr>
+<tr><td><code>focus</code></td><td>Al entrar en un campo</td><td>Mostrar ayuda</td></tr>
+<tr><td><code>blur</code></td><td>Al salir de un campo</td><td>Comprobar el campo al salir</td></tr>
+<tr><td><code>submit</code></td><td>Al enviar un formulario</td><td>Validar antes de enviar</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>9. Errores típicos que debes revisar</h2>
+<ul>
+    <li>Escribir <code>getElementById("nombre")</code> sin que exista un elemento con ese <code>id</code>.</li>
+    <li>Olvidar que los textos de un input se leen con <code>.value</code>, no con <code>.innerHTML</code>.</li>
+    <li>Escribir <code>if (campo.value = "")</code>. Para comparar usa <code>==</code> (o <code>===</code> si ya lo estáis usando).</li>
+    <li>Olvidar los paréntesis y las llaves de la función del evento.</li>
+    <li>Usar <code>change</code> cuando necesitas reaccionar a cada tecla: normalmente corresponde <code>input</code>.</li>
+    <li>Intentar leer <code>.value</code> de un radio sin comprobar si hay alguno seleccionado.</li>
+    <li>Olvidar <code>event.preventDefault()</code> cuando el ejercicio pide validar un formulario antes de enviarlo.</li>
+    <li>Olvidar <code>defer</code> si el script se carga en el <code>head</code>.</li>
+</ul>
+</section>
+
+<section>
+<h2>10. Cómo plantear un ejercicio nuevo en el examen</h2>
+<ol>
+    <li><strong>Identifica qué acción hace el usuario:</strong> clic, escribir, tecla, ratón, cambio o envío.</li>
+    <li><strong>Selecciona los elementos:</strong> botones, inputs, párrafos, imágenes, select, formulario.</li>
+    <li><strong>Asocia el evento:</strong> <code>addEventListener("evento", function(event) { ... })</code>.</li>
+    <li><strong>Obtén los datos:</strong> normalmente <code>input.value</code> o <code>event.key</code>.</li>
+    <li><strong>Decide qué debe pasar:</strong> <code>if / else</code>, cambiar texto, estilo, clase o mostrar un aviso.</li>
+    <li><strong>Prueba casos distintos:</strong> vacío, correcto, incorrecto, tecla especial, volver a pulsar, etc.</li>
+</ol>
+<p class="resultado"><strong>Idea clave:</strong> casi todos los ejercicios de eventos siguen esta cadena: seleccionar elemento → escuchar evento → obtener dato → comprobar condición → modificar la página.</p>
+</section>
+
+</main>
+<script>
+// Ejemplos interactivos de la propia chuleta
+
+document.getElementById("saludar").addEventListener("click", function() {
+    alert("¡Hola!");
+});
+
+document.getElementById("cambiar").addEventListener("click", function() {
+    document.getElementById("mensaje").innerHTML = "Texto cambiado";
+});
+
+document.getElementById("ocultar").addEventListener("click", function() {
+    let texto = document.getElementById("secreto");
+    if (texto.style.display == "none") {
+        texto.style.display = "block";
+    } else {
+        texto.style.display = "none";
+    }
+});
+
+document.getElementById("nombre").addEventListener("input", function() {
+    document.getElementById("resultadoNombre").innerHTML = this.value;
+});
+
+document.getElementById("usuario").addEventListener("input", function() {
+    let aviso = document.getElementById("avisoUsuario");
+    if (this.value.trim() == "") {
+        aviso.innerHTML = "El campo está vacío";
+    } else {
+        aviso.innerHTML = "Campo correcto";
+    }
+});
+
+document.getElementById("password").addEventListener("input", function() {
+    let indicador = document.getElementById("indicador");
+    if (this.value.trim().length >= 8) {
+        indicador.innerHTML = "Contraseña válida";
+        indicador.className = "valido";
+    } else {
+        indicador.innerHTML = "Mínimo 8 caracteres";
+        indicador.className = "invalido";
+    }
+});
+
+document.getElementById("tecla").addEventListener("keydown", function(event) {
+    if (event.key == "Enter") {
+        document.getElementById("teclaResultado").innerHTML = "Has pulsado Enter";
+    }
+});
+
+document.getElementById("textoContar").addEventListener("input", function() {
+    document.getElementById("contador").innerHTML = this.value.length;
+});
+
+let caja = document.getElementById("caja");
+caja.addEventListener("mouseover", function() {
+    caja.innerHTML = "El ratón está encima";
+});
+caja.addEventListener("mouseout", function() {
+    caja.innerHTML = "El ratón ha salido";
+});
+
+let zona = document.getElementById("zona");
+zona.addEventListener("mouseover", function() {
+    zona.style.backgroundColor = "yellow";
+});
+zona.addEventListener("mouseout", function() {
+    zona.style.backgroundColor = "lightblue";
+});
+
+document.getElementById("doble").addEventListener("dblclick", function() {
+    this.innerHTML = "¡Doble clic detectado!";
+});
+
+document.getElementById("colores").addEventListener("change", function() {
+    document.getElementById("resultadoColor").innerHTML = "Has elegido: " + this.value;
+});
+
+let campoFocus = document.getElementById("campoFocus");
+campoFocus.addEventListener("focus", function() {
+    document.getElementById("ayuda").innerHTML = "Escribe tu correo";
+});
+campoFocus.addEventListener("blur", function() {
+    document.getElementById("ayuda").innerHTML = "Has salido del campo";
+});
+
+document.getElementById("formulario").addEventListener("submit", function(event) {
+    let nombre = document.getElementById("nombreForm");
+    if (nombre.value.trim() == "") {
+        event.preventDefault();
+        alert("Debes escribir tu nombre");
+    } else {
+        event.preventDefault(); // En esta chuleta no enviamos datos a ningún servidor
+        alert("Formulario comprobado correctamente");
+    }
+});
+
+document.getElementById("confirmar").addEventListener("click", function() {
+    let respuesta = confirm("¿Seguro que quieres continuar?");
+    if (respuesta == true) {
+        document.getElementById("respuestaConfirm").innerHTML = "Has aceptado";
+    } else {
+        document.getElementById("respuestaConfirm").innerHTML = "Has cancelado";
+    }
+});
+</script>
+</body>
+</html>
